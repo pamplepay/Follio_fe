@@ -1,0 +1,64 @@
+@import "../../../assets/scss/utils/variables";
+
+.login-page {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-container {
+  width: 636px;
+
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+  border-radius: 10px;
+
+  padding: 53px 106px 78px;
+  &.first {
+    padding: 40px 64px 74px;
+  }
+  > .logo {
+    width: 50px;
+    height: 19px;
+    background-image: url("/assets/images/ico-logo.svg");
+    background-size: cover;
+
+    /* color/primary/cyon */
+
+    color: #20D9E5;
+  }
+
+  > .title {
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 167%;
+    text-align: center;
+  }
+
+  > .sub-title {
+    margin-top: 9px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 149%;
+    text-align: center;
+  }
+
+  > .btn-wrap {
+    margin-top: 32px;
+
+    &.kakao {
+      width: 195px;
+    }
+  }
+
+  form {
+    margin-top: 48px;
+  }
+}
+

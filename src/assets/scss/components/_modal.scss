@@ -1,0 +1,110 @@
+.modal-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+    height: calc(var(--vh, 1vh) * 100);
+  background-color: rgba(49, 60, 67, 0.8);
+  z-index: 999;
+
+  &.is-open {
+    display: flex;
+  }
+
+  .modal-content {
+    position: relative;
+    margin: auto;
+    padding: 16px 20px;
+    width: 296px;
+    background-color: #fff;
+    color: $black;
+    font-size: 13px;
+    line-height: 150%;
+    box-shadow: 0px 4px 15px -7px rgba(49, 60, 67, 0.7), 0px 4px 31px rgba(49, 60, 67, 0.5);
+    border-radius: 10px;
+    @include pc-style {
+      width: 320px;
+    }
+
+    .btn-close {
+      position: absolute;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      top: 20px;
+      right: 24px;
+      background-image: url("/assets/images/ico-close.svg");
+      background-repeat: no-repeat;
+    }
+
+    &.center {
+      text-align: center;
+
+      .modal-header {
+        .modal-img {
+          margin: 20px auto 0;
+        }
+        .modal-txt {
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 167%;
+        }
+
+        .sub-title {
+          font-weight: bold;
+          font-size: 15px;
+          line-height: 167%;
+        }
+      }
+
+      .modal-body {
+        margin-top: 16px;
+
+        .modal-txt {
+          font-size: 13px;
+          line-height: 150%;
+        }
+      }
+
+      .modal-footer {
+        margin-top: 32px;
+      }
+    }
+
+    .modal-header {
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 29px;
+    }
+
+    .modal-body {
+      .modal-txt {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 23px;
+        letter-spacing: -0.2px;
+      }
+    }
+
+    .modal-footer {
+      display: flex;
+      margin-top: 24px;
+      button {
+        flex: 1
+      }
+      button + button {
+        margin-left: 16px;
+      }
+    }
+
+    .form-input-with-delete + .form-input-with-delete {
+      margin-top: 8px;
+    }
+  }
+}

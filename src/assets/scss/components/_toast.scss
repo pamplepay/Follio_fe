@@ -1,0 +1,65 @@
+.toast {
+  position: fixed;
+  top: 96px;
+  right: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 265px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 9999;
+  background-color: $black-60;
+  .text {
+    font-weight: 400;
+    letter-spacing: -0.44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.toast-gray {
+    background-color: $black-30;
+    color: #fff;
+  }
+  &.toast-primary {
+    background-color: rgba($primary, 0.1);
+    color: $primary;
+  }
+  &.toast-shadow {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 56px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px 0 $black-15;
+    .emoji {
+      margin-right: 8px;
+    }
+    a {
+      font-weight: 400;
+      color: $secondary;
+      text-decoration: underline;
+    }
+  }
+  &.is-fixed-bottom {
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0 auto;
+    background-color: $black-85;
+    .emoji {
+      margin-right: 10px;
+    }
+  }
+}

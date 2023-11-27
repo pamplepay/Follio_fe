@@ -1,0 +1,74 @@
+<div class="customer-agree-container">
+  <ng-template [ngIf]="step === 1">
+    <div class="header">
+      <div class="title">개인 정보 수집 및 이용 동의</div>
+    </div>
+    <!--  <section class="header-section-container">-->
+    <!--    <div class="header">-->
+    <!--      <div class="title">인증번호를 입력해 주세요.</div>-->
+    <!--    </div>-->
+    <!--    <div class="form-input-wrap" [class.error]="inputControl.invalid && isShowValidLine">-->
+    <!--      <div class="input-wrap">-->
+    <!--        <input type="text" class="form-input" placeholder="인증번호 4자리" [formControl]="inputControl" maxlength="4">-->
+    <!--        <div class="error-message">-->
+    <!--          {{(inputControl.errors?.minLength === false ? inputControl.errors?.message + '자리 입력해 주세요.' : inputControl.errors.message) || '인증번호를 입력해 주세요.'}}-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </section>-->
+
+    <section class="section-container">
+      <p>보험 계약 분석 등 상담에 필요한 개인 정보의 수집 및 이용 동의를 위한 절차입니다. 수집되는 정보는 서비스 제공 이외의 용도로는 사용되지 않으며 보유 및 이용 기간 이후 삭제됩니다.</p>
+      <p class="number">1. 수집 및 이용 목적</p>
+      <p>보험 계약 상담, 재무 설계 서비스</p>
+
+      <p class="number">2. 수집 및 이용 항목</p>
+      <p class="dot">일반 개인 정보: 성명, 연락처, 주소, 생년월일, 이메일, 직업, 운전 여부</p>
+      <p class="dot">민감 정보: 질병, 상해에 관한 정보(진료 기록, 상병명, 기왕증 등)</p>
+
+      <p class="number">3. 보유 및 이용 기간</p>
+      <p>서비스 제공을 위한 최소한의 기간 동안만 보유 · 이용됩니다. 단, 관계 법령의 규정에 따라 개인 정보를 보존해야 하는 경우 해당 정보를 보관합니다.</p>
+
+      <div class="description">
+        동의를 거부할 수 있으며, 거부 시 계약 분석 등 서비스 제공이 불가할 수 있습니다.
+      </div>
+    </section>
+
+    <div class="div"></div>
+
+    <div class="agree-section">
+      <label class="form-check-wrap" [class.error]="checkControl.invalid && isShowValidLine">
+        <input type="checkbox"
+               [formControl]="checkControl"
+               class="form-check">
+        <span class="custom-check"></span>
+        <span class="custom-label-txt">위의 내용에 모두 동의합니다.</span>
+      </label>
+    </div>
+
+    <!--  <div class="btn-wrap">-->
+    <!--    <button class="btn" [attr.disabled]="inputControl.value?.length === 0 || !checkControl.valid ? true : undefined"-->
+    <!--            (click)="onSubmit()">다음-->
+    <!--    </button>-->
+    <!--  </div>-->
+
+    <div class="btn-wrap">
+      <button class="btn" [attr.disabled]="!checkControl.valid ? true : undefined"
+              (click)="onSubmit()">다음
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="step === 2">
+    <div class="center-container">
+      <div class="agree-container">
+        <div class="icon"></div>
+        <div class="title">
+          동의 감사해요
+        </div>
+        <div class="sub-title">얼른 분석하고 연락드릴게요 :)</div>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

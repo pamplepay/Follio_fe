@@ -1,0 +1,52 @@
+.bar-graph-list {
+  &.just-value {
+    .bar-graph-item {
+      @include pc-style {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+}
+
+.bar-graph-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  .graph-property {
+    flex-shrink: 0;
+    min-width: 92px;
+    font-size: 14px;
+    color: $black-60;
+  }
+
+  .bar-graph {
+    position: relative;
+    flex: 1;
+    margin: 0 16px;
+    height: 14px;
+    background-color: #f5f5f5;
+    .fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: $primary;
+    }
+  }
+
+  .graph-value {
+    flex-shrink: 0;
+    min-width: 17px;
+    font-size: 14px;
+    font-weight: 700;
+    color: $primary;
+    text-align: right;
+  }
+}

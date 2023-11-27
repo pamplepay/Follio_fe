@@ -1,0 +1,46 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header">
+      <div class="title">결제 리스트</div>
+    </div>
+  </div>
+
+  <div class="payment-container" *ngIf="paymentList?.length > 0">
+    <div class="header">
+      <div class="cell name">상품명</div>
+      <div class="cell status">진행 상태</div>
+      <div class="cell price">가격</div>
+      <div class="cell period">구독 기간</div>
+      <div class="cell etc"></div>
+    </div>
+
+    <ng-template ngFor [ngForOf]="paymentList" let-paymentItem let-customerIndex="index">
+      <div class="item" (click)="onClickPayment(paymentItem)">
+        <div class="cell name"><strong>{{paymentItem.membership.name}}</strong></div>
+        <div class="cell status">{{paymentItem.status | paymentStatus}}</div>
+        <div class="cell price">{{paymentItem.amount | number}}</div>
+        <div class="cell period">{{paymentItem?.user_membership?.started_at | amDateFormat:'YYYY.MM.DD'}}~{{paymentItem?.user_membership?.expiry_at | amDateFormat:'YYYY.MM.DD'}}</div>
+        <div class="cell etc">
+<!--          <button class="btn-ico btn-right"></button>-->
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="pagination" *ngIf="paymentList?.length > 0">
+    <span class="primary">{{indexPage}}</span>of {{totalPageCount}}
+
+    <button type="button" class="btn-icon btn-prev" [attr.disabled]="indexPage === 1 ? true : undefined"
+            (click)="onPrevPage()">prev
+    </button>
+    <button type="button" class="btn-icon btn-next"
+            [attr.disabled]="indexPage === totalPageCount ? true : undefined" (click)="onNextPage()">next
+    </button>
+  </div>
+
+  <div class="nothing" *ngIf="paymentList?.length === 0">
+    <div class="icon"></div>
+    <div class="title">결제 내역이 없어요</div>
+  </div>
+</div>
+

@@ -1,0 +1,155 @@
+<div class="page-container" *ngIf="!customer?.is_agree_term">
+  <div class="center-container">
+    아직 동의를 하지 않으셨습니다.
+  </div>
+</div>
+
+<div class="page-container" *ngIf="customer?.is_agree_term === true">
+  <div class="page-header">
+    <div class="path">
+      <span (click)="onGotoCustomerList()">고객 리스트</span>
+      <div class="btn-icon btn-right"></div>
+      {{customer?.name}}님
+    </div>
+    <div class="header">
+      <div class="back" (click)="onBack()"></div>
+      <div class="name-wrap">
+        <div class="name">
+          <strong>{{customer?.name}}</strong>고객님
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn primary-line" (click)="onShowCustomerInfoModal()">고객 정보</button>
+        <button class="btn primary-line" (click)="onShowCaseHistoryModal()">고객 병력</button>
+        <button class="btn-menu">
+          <div class="menu-list">
+            <div class="menu-item" (click)="onDeleteCustomer()">
+              삭제하기
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-container">
+    <section class="user-portfolio">
+      <div class="header">
+        <div class="title">
+          기존 포트폴리오
+        </div>
+        <div class="more" (click)="onGotoAnalysis()">종합 분석 페이지로 이동</div>
+      </div>
+
+      <div class="btn-wrap">
+        <button class="btn add-insurance" (click)="onAddInsurance(1)">
+          <img src="/assets/images/ico-add.svg" alt="">
+          증권 추가
+        </button>
+      </div>
+
+
+      <ng-template [ngIf]="existingInsuranceList?.length > 0">
+        <div class="info-wrap" *ngIf="existingInsuranceList?.length > 0 ">
+          <div class="left">
+            <div class="label">전체 계약 건수</div>
+            <div class="count"><strong>{{existingInsuranceList.length || 0}}</strong>건</div>
+          </div>
+          <div class="div"></div>
+          <div class="right">
+            <div class="label">월 보험료 합계</div>
+            <div class="count"><strong>{{existingTotal || 0 | number}}</strong>원</div>
+          </div>
+        </div>
+
+        <div class="insurance-list">
+          <ng-template ngFor [ngForOf]="existingInsuranceList" let-existingInsuranceItem
+                       let-existingInsuranceIndex="index">
+            <app-insurance-item
+                routerLink="/insurance/{{existingInsuranceItem.id}}"
+                [insuranceItem]="existingInsuranceItem"></app-insurance-item>
+          </ng-template>
+        </div>
+      </ng-template>
+
+      <div class="nothing" *ngIf="existingInsuranceList?.length === 0">
+        <div class="icon insurance"></div>
+        <div class="title">아직 추가된 증권이 없어요.</div>
+        <div class="sub-title">증권을 추가해 주세요.</div>
+      </div>
+    </section>
+    <section class="suggest-portfolio">
+      <div class="header">
+        <div class="title">
+          제안 포트폴리오
+        </div>
+        <div class="more" (click)="onGotoCompare()">비교 리포트 페이지로 이동</div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn add-insurance" (click)="onAddInsurance(2)">
+          <img src="/assets/images/ico-add.svg" alt="">
+          증권 추가
+        </button>
+      </div>
+      <ng-template [ngIf]="suggestInsuranceList?.length > 0">
+
+        <div class="info-wrap">
+          <div class="left">
+            <div class="label">전체 계약 건수</div>
+            <div class="count"><strong>{{suggestInsuranceList.length || 0}}</strong>건</div>
+          </div>
+          <div class="div"></div>
+          <div class="right">
+            <div class="label">월 보험료 합계</div>
+            <div class="count"><strong>{{suggestTotal || 0 | number}}</strong>원</div>
+          </div>
+        </div>
+
+        <div class="insurance-list">
+          <ng-template ngFor [ngForOf]="suggestInsuranceList" let-suggestInsuranceItem
+                       let-suggestInsuranceIndex="index">
+            <app-insurance-item
+                (click)="onGotoForm(suggestInsuranceItem)"
+                [insuranceItem]="suggestInsuranceItem"></app-insurance-item>
+          </ng-template>
+        </div>
+      </ng-template>
+      <div class="nothing" *ngIf="suggestInsuranceList?.length === 0">
+          <div class="icon insurance"></div>
+          <div class="title">아직 추가된 증권이 없어요.</div>
+          <div class="sub-title">증권을 추가해 주세요.</div>
+        </div>
+    </section>
+  </div>
+
+  <section class="customer-container">
+    <div class="header">
+      <div class="title">
+        {{customer.name}}님의 그룹
+        <div class="tooltip-wrap">
+          <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+          <div class="tooltip-box">
+            <div class="tooltip">가족처럼 함께 관리해야할 고객일 경우 그룹으로 묶을 수 있어요.</div>
+          </div>
+        </div>
+      </div>
+      <div class="edit" (click)="onEditGroupCustomer()">편집하기</div>
+    </div>
+
+
+    <div class="list">
+      <div class="add-button" (click)="onAddGroupCustomer()">
+        <div class="icon"></div>
+        그룹원 추가
+      </div>
+      <ng-template ngFor [ngForOf]="groupCustomerList" let-groupCustomerItem let-groupCustomerIndex="index">
+        <div class="customer-wrap" (click)="onGotoCustomer(groupCustomerItem)">
+          <div class="customer">
+            <span class="name">{{groupCustomerItem.name}}</span>님
+          </div>
+          <div class="contract">총 {{groupCustomerItem.insurance_count}}건의 계약</div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+</div>

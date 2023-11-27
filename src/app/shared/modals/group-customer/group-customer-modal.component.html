@@ -1,0 +1,39 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="title">그룹 관리</div>
+    </div>
+    <div class="list-container">
+      <div class="header">
+        <div class="form-input-wrap search" [class.error]="searchFormControl.invalid">
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="고객명, 생년월일 검색" [formControl]="searchFormControl">
+            <div class="error-message">{{searchFormControl.errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="customer-list">
+        <ng-template ngFor="" [ngForOf]="customerList" let-customerItem let-customerIndex="index">
+          <div class="customer-wrap" (click)="onSelectCustomer(customerItem)">
+            <div class="name">
+              <label class="form-check-wrap">
+                <input type="checkbox"
+                       [checked]="!!customerItem.checked"
+                       class="form-check">
+                <span class="custom-check" (click)="onSelectCustomer(customerItem)"></span>
+              </label>
+              <strong>{{customerItem.name}}</strong> 님
+            </div>
+            <div class="birth">{{customerItem.birth_day}}</div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-wrap">
+        <button class="btn line" (click)="onClose()">닫기</button>
+        <button class="btn" (click)="onSubmit()">적용하기</button>
+      </div>
+    </div>
+  </div>
+</div>

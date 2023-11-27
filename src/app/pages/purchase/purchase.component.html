@@ -1,0 +1,95 @@
+<div class="page-container" *ngIf="!isDone">
+  <section class="half">
+    <div class="header">
+      <div class="title">구매 상품 정보</div>
+    </div>
+
+    <div class="content">
+      <div class="name"><strong>폴리오 {{membership.name}}</strong></div>
+      <div class="date">{{membership?.start_date}} - {{membership?.end_date}}</div>
+    </div>
+
+    <div class="description">※ 모든 이용권은 결제 시간과 관련없이, 상품 만료일 자정까지 유효합니다.</div>
+  </section>
+  <section class="half">
+    <div class="header">
+        <div class="title">결제 수단</div>
+    </div>
+
+    <div class="content">
+      <div class="name">
+        <label class="form-radio-wrap">
+          <input type="radio"
+                 name="pin"
+                 value="1"
+                 class="form-radio" [checked]="true">
+          <span class="custom-radio"></span>
+          <span class="custom-label-txt"><strong>무통장 입금</strong> 기업은행 / 008-502606-04-033 / (주)서울엘엔에스금융컨설팅</span>
+        </label>
+      </div>
+    </div>
+  </section>
+  <section class="half">
+    <div class="header">
+      <div class="title">입금자 정보</div>
+    </div>
+
+    <div class="content" [formGroup]="form">
+      <div class="form-input-wrap" [class.error]="form.get('payment_username').invalid && isShowValidLine">
+        <div class="input-wrap">
+          <input type="text" class="form-input" id="payment_username" placeholder="입금자명" [formControlName]="'payment_username'">
+          <div class="error-message">{{form.get('payment_username').errors?.message || '입력해 주세요.'}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="half">
+    <div class="header">
+      <div class="title">결제 금액</div>
+    </div>
+
+    <div class="content">
+      <div class="name">폴리오 {{membership.name}}</div>
+      <div class="price"><strong>{{membership?.amount | number}}원</strong></div>
+    </div>
+  </section>
+  <section>
+    <div class="header">
+      <div class="title">구매 동의</div>
+    </div>
+
+    <div class="content">
+      <div class="customer-wrap">
+        <div class="name">
+          <label class="form-check-wrap">
+            <input type="checkbox"
+                   [checked]="!!form.get('term').value"
+                   (click)="onClickTerm($event)"
+                   class="form-check">
+            <span class="custom-check"></span>
+            결제 관련 유의사항을 확인하였으며 구매에 동의합니다.
+          </label>
+        </div>
+      </div>
+
+      <div class="more" (click)="onClickMoreTerm()">
+        자세히 보기
+      </div>
+    </div>
+  </section>
+
+  <div class="btn-wrap">
+    <button class="btn" (click)="onSubmit()">결제하기</button>
+  </div>
+</div>
+
+<div class="done-container" *ngIf="isDone">
+  <div class="done-wrap">
+    <div class="icon"></div>
+    <div class="title">
+      24시간 안으로 기업은행 / 008-502606-04-033 / (주)서울엘엔에스금융컨설팅으로<br/>
+      입금되지 않으면 주문이 취소돼요.
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,376 @@
+@import "../../../assets/scss/utils/variables";
+
+section {
+  position: relative;
+
+  > .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+
+  > .header {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    > .title {
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 128%;
+    }
+
+    > .sub-title {
+      margin-top: 8px;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 167%;
+      color: $black-80;
+    }
+
+    > .text {
+
+    }
+  }
+
+  > .row-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 66px;
+
+    .item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .label {
+        background: #F4F6F8;
+        border-radius: 50px;
+        padding: 4px 20px;
+
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 167%;
+      }
+
+      .img {
+        margin-top: -10px;
+      }
+    }
+  }
+
+  > .column-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      display: flex;
+      gap: 49px;
+      margin-top: 23px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      .label {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 167%;
+        padding: 15px 25px;
+        color: $black;
+
+        background-color: #F4F6F8;
+        border-radius: 10px;
+      }
+
+      .text {
+        width: 418px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .img {
+        width: 367px;
+        height: 152px;
+        box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31);
+        filter: drop-shadow(0px 4px 31px rgba(147, 182, 193, 0.17));
+      }
+    }
+  }
+
+  > .circle-list {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    .item {
+      width: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .icon {
+        width: 100%;
+        height: 122px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .index {
+        margin-top: 17px;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 154%;
+
+        color: $black-60;
+
+        span {
+          border-bottom: 1px solid rgba(20, 50, 67, 0.6);
+        }
+
+      }
+
+      .text {
+        margin-top: 8px;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 154%;
+      }
+    }
+
+  }
+
+  .btn-wrap {
+    margin-top: 24px;
+    max-width: 195px;
+  }
+
+  &.section-01 {
+    height: 634px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #F4F6F8;
+
+    > .background {
+      z-index: 1;
+      background-image: url("/assets/images/el-bg-landing-01.png");
+      background-size: 1568px 936px;
+      background-position: calc(50% - 35px) -250px;
+    }
+
+    .title {
+      font-weight: normal;
+      font-size: 43px;
+      line-height: 122%;
+    }
+
+    .sub-title {
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 162%;
+      margin-top: 19px;
+    }
+
+    .btn-wrap {
+      margin-top: 33px;
+    }
+
+    .content {
+      position: absolute;
+      z-index: 10;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 100px;
+
+      .left {
+        margin-top: 30px;
+        width: 377px;
+      }
+
+      .right {
+        height: 100%;
+        width: 456px;
+
+        img {
+          position: absolute;
+          margin-top: 80px;
+          width: 520px;
+        }
+      }
+    }
+  }
+
+  &.section-02 {
+    background-color: $white;
+    height: 652px;
+  }
+
+  &.section-03 {
+    height: 697px;
+
+    .row-list {
+      gap: 14px;
+
+      .item {
+        width: 247px;
+
+        .label {
+          background-color: #E3EAF0;
+        }
+      }
+    }
+  }
+
+  &.section-04 {
+    height: 1220px;
+    background-color: $white;
+
+    > .column-list {
+      margin-top: 60px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .item {
+        display: flex;
+        gap: 49px;
+        margin-top: 23px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        .label {
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 167%;
+          padding: 15px 25px;
+          color: $black;
+
+          background-color: #F4F6F8;
+          border-radius: 10px;
+        }
+
+        .text {
+          width: 418px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .img {
+          width: 367px;
+          height: unset;
+          box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31);
+          filter: drop-shadow(0px 4px 31px rgba(147, 182, 193, 0.17));
+        }
+      }
+    }
+  }
+
+  &.section-05 {
+    height: 472px;
+    width: 100%;
+    .title {
+      margin-top: 60px;
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 139%;
+      text-align: center;
+    }
+
+    .circle-list {
+      margin-top: 60px;
+    }
+  }
+
+  &.section-06 {
+    height: 412px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      margin-top: 80px;
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 128%;
+      text-align: center;
+    }
+
+    .review-container {
+      width: 1024px;
+      height: 182px;
+      overflow: hidden;
+      margin-top: 37px;
+      position: relative;
+    }
+
+    .review-list {
+      margin-top: 9px;
+      display: flex;
+      grid-gap: 21px;
+      gap: 21px;
+      justify-content: center;
+      position: absolute;
+      left: -170px;
+      .item {
+        background-color: $white;
+        box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+        border-radius: 10px;
+        width: 444px;
+        height: 147px;
+        padding: 20px 35px 30px;
+
+        .name {
+          font-weight: normal;
+          font-size: 13px;
+          line-height: 167%;
+          text-align: center;
+          color: $black-60;
+        }
+        .text {
+          margin-top: 6px;
+          text-align: center;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 167%;
+        }
+      }
+    }
+  }
+
+  &.section-07 {
+    background-color: #E3E9F0;
+    height: 236px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > .background {
+      z-index: 1;
+      background-image: url("/assets/images/el-bg-landing-02.png");
+      background-size: 1568px 824px;
+      background-position: calc(50% + 32px) -284px;
+    }
+
+    .title {
+      margin-top: 60px;
+      font-weight: bold;
+      font-size: 26px;
+      line-height: 128%;
+      text-align: center;
+    }
+  }
+}

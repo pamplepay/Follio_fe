@@ -1,0 +1,104 @@
+<div class="page-container">
+  <section class="user-info-container">
+    <div class="header">
+      <div class="title">개인 정보</div>
+      <div class="btn-edit" (click)="onEditUser()">수정하기</div>
+    </div>
+
+    <div class="content">
+      <div class="item">
+        <div class="label">이름</div>
+        <div class="value">{{loginUser.name}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">이메일</div>
+        <div class="value">{{loginUser.email}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">전화번호</div>
+        <div class="value">{{loginUser.phone_number | parsePhoneNumberPipe}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">소속</div>
+        <div class="value">{{loginUser.company}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">추천인</div>
+        <div class="value">
+          <span *ngIf="loginUser?.recommend_username">{{loginUser?.recommend_username}}</span>
+          <span *ngIf="!loginUser?.recommend_username" class="add-recommend-user" (click)="onAddRecommendUser()">입력하기</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="membership-container">
+    <div class="header">
+      <div class="title">폴리오 이용내역</div>
+      <div class="more" (click)="onGotoPrice()">다른 이용권 보러 가기</div>
+    </div>
+
+    <div class="content">
+      <ng-template [ngIf]="loginUser?.user_membership">
+        <div class="sub-title">{{loginUser?.user_membership?.membership_payment?.membership?.name}}{{loginUser?.user_membership?.membership_payment && loginUser?.user_membership?.is_free ? ' + ' : ''}}{{loginUser?.user_membership?.is_free ? '친구 초대 무료이용' : ''}}</div>
+
+        <div class="item">
+          <div class="label">현 이용권 기간</div>
+          <div class="value">{{loginUser?.user_membership?.started_at | amDateFormat:'YYYY.MM.DD'}} ~ {{loginUser?.user_membership?.expiry_at | amDateFormat:'YYYY.MM.DD'}}</div>
+        </div>
+
+        <div class="item">
+          <div class="label">남은 일수</div>
+          <div class="value">{{remainDays}} 일</div>
+        </div>
+
+        <div class="item">
+          <div class="label">내 추천인 코드</div>
+          <div class="value">
+            <span class="copy" (click)="onCopyRecommendCode(loginUser?.recommend_code)"><img src="/assets/icons/ico-copy.svg" alt="">복사</span>{{loginUser?.recommend_code}}</div>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="!loginUser?.user_membership">
+        <div class="sub-title">체험판</div>
+
+        <div class="item">
+          <div class="label">남은 등록가능 고객</div>
+          <div class="value">{{loginUser?.remain_add_user_count || 0}}명</div>
+        </div>
+
+        <div class="item">
+          <div class="label">내 추천인 코드</div>
+          <div class="value" (click)="onCopyRecommendCode(loginUser?.recommend_code)"><span class="copy"><img src="/assets/icons/ico-copy.svg" alt="">복사</span>{{loginUser?.recommend_code}}</div>
+
+        </div>
+      </ng-template>
+<!--      <div class="item">-->
+<!--        <div class="label">다음 결제 수단</div>-->
+<!--        <div class="value">BC카드 4339</div>-->
+<!--      </div>-->
+    </div>
+  </section>
+
+  <section class="etc-container">
+    <div class="header">
+      <div class="title">기타 사항</div>
+    </div>
+
+    <div class="list">
+      <div class="btn-item" (click)="onGotoPayment()">
+        결제 내역
+      </div>
+      <div class="btn-item" (click)="onLogout()">
+        로그아웃
+      </div>
+      <div class="btn-item" (click)="onOut()">
+        회원 탈퇴
+      </div>
+    </div>
+  </section>
+</div>

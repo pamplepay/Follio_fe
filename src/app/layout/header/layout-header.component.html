@@ -1,0 +1,27 @@
+<ng-template [ngIf]="header$ | async">
+  <div class="header-container">
+    <div class="inner">
+      <div class="logo" (click)="onGotoPage('')">
+      </div>
+
+      <div class="nav-container">
+        <ng-template [ngIf]="(loginUser$ | async)">
+          <div class="nav-item" [class.is-active]="nav === 'customer'" (click)="onGotoPage('customer')">고객 리스트</div>
+          <div class="nav-item" [class.is-active]="nav === 'template'" (click)="onGotoPage('template')">자주 쓰는 설계</div>
+        </ng-template>
+        <div class="nav-item" [class.is-active]="nav === 'price'" (click)="onGotoPage('price')">가격 정책</div>
+        <div class="user"  *ngIf="loginUser$ | async as loginUser"
+             (click)="onGotoPage('user')">
+          <span class="name">{{loginUser?.name}}</span>님
+          <div class="image" [style.backgroundImage]="'url(' + loginUser?.image + ');'"></div>
+        </div>
+        <div class="btn-wrap"
+             *ngIf="!(loginUser$ | async)"
+             (click)="onGotoPage('login')">
+          <button class="btn">로그인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

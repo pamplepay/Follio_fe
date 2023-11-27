@@ -1,0 +1,28 @@
+<!-- .is-open 붙으면 보임 -->
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content center" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <p class="modal-txt">추천인 코드 입력</p>
+    </div>
+    <div class="btn-close" (click)="onClose()"></div>
+
+    <div class="modal-body">
+        <div class="form-input-wrap"
+             [class.error]="isShowValidLine && !inputControl.valid">
+          <input type="text" placeholder="추천코드" class="form-input"
+                 [class.error]="isShowValidLine && !inputControl.valid"
+                 [maxlength]="5"
+                 (blur)="onBlur($event, inputControl)"
+                 [tabIndex]="0" [formControl]="inputControl">
+          <button class="btn-icon btn-delete" (click)="inputControl.setValue('')">삭제</button>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn" (click)="onSave()">완료</button>
+    </div>
+  </div>
+</div>
+
+
+

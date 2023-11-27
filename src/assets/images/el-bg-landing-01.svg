@@ -1,0 +1,422 @@
+<svg width="1440" height="700" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle opacity="0.15" r="44" transform="matrix(1 0 0 -1 257 145)" stroke="#C8E4E5" stroke-width="30"/>
+  <g opacity="0.2">
+    <mask id="path-2-inside-1" fill="white">
+      <rect x="295" y="415" width="110" height="51" rx="4"/>
+    </mask>
+    <rect x="295" y="415" width="110" height="51" rx="4" stroke="#C8E4E5" stroke-width="16" mask="url(#path-2-inside-1)"/>
+  </g>
+  <g opacity="0.3">
+    <mask id="path-3-inside-2" fill="white">
+      <rect x="1316" y="156" width="110" height="51" rx="4"/>
+    </mask>
+    <rect x="1316" y="156" width="110" height="51" rx="4" stroke="#C8E4E5" stroke-width="16" mask="url(#path-3-inside-2)"/>
+  </g>
+  <g opacity="0.2">
+    <mask id="path-4-inside-3" fill="white">
+      <rect x="1211" y="580" width="65" height="30" rx="4"/>
+    </mask>
+    <rect x="1211" y="580" width="65" height="30" rx="4" stroke="#C8E4E5" stroke-width="16" mask="url(#path-4-inside-3)"/>
+  </g>
+  <circle opacity="0.6" r="43.5" transform="matrix(1 0 0 -1 1011.5 440.5)" stroke="#F8FEFF" stroke-width="20"/>
+  <circle opacity="0.7" r="67" transform="matrix(1 0 0 -1 215 666)" stroke="#F8FEFF" stroke-width="30"/>
+  <g opacity="0.4">
+    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="257" y="-28" width="202" height="202">
+      <circle cx="358" cy="73" r="101" fill="#C4C4C4"/>
+    </mask>
+    <g mask="url(#mask0)">
+      <circle cx="255.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="9.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="24.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="39.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="54.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="255.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="275.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="295.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="315.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="334.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="354.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="69.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="84.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="99.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="114.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="129.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="144.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="159.5" r="2.5" fill="white"/>
+      <circle cx="374.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="394.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="414.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="433.5" cy="174.5" r="2.5" fill="white"/>
+      <circle cx="453.5" cy="174.5" r="2.5" fill="white"/>
+    </g>
+  </g>
+  <g opacity="0.7">
+    <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="1203" y="180" width="281" height="281">
+      <circle cx="1343.5" cy="320.5" r="140.5" fill="#C4C4C4"/>
+    </mask>
+    <g mask="url(#mask1)">
+      <circle cx="1200.91" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1256.56" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="190.435" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="211.302" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="232.169" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="253.032" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="273.9" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="294.767" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1200.91" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1228.73" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1256.55" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1284.38" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1310.81" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1338.63" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="315.63" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="336.497" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="357.364" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="378.228" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="399.095" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1422.1" cy="419.962" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="440.829" r="3.47772" fill="white"/>
+      <circle cx="1366.45" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1394.27" cy="461.696" r="3.47772" fill="white"/>
+      <circle cx="1422.09" cy="461.696" r="3.47772" fill="white"/>
+    </g>
+  </g>
+  <g opacity="0.56">
+    <mask id="mask2" mask-type="alpha" maskUnits="userSpaceOnUse" x="-84" y="341" width="325" height="325">
+      <circle cx="78.5" cy="503.5" r="162.5" fill="#C4C4C4"/>
+    </mask>
+    <g mask="url(#mask2)">
+      <circle cx="10.1209" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="10.1209" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="10.1209" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="10.1209" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="10.1209" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="10.1209" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="40.6902" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="72.868" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="353.065" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="377.198" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="401.331" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="425.468" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="449.6" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="473.733" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="10.119" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="40.6873" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="72.8651" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="497.87" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="522.003" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="546.136" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="570.272" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="594.405" r="4.02228" fill="white"/>
+      <circle cx="105.046" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="137.223" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="169.402" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="618.538" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="642.671" r="4.02228" fill="white"/>
+      <circle cx="105.045" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="137.222" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="169.401" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="199.971" cy="666.804" r="4.02228" fill="white"/>
+      <circle cx="232.148" cy="666.804" r="4.02228" fill="white"/>
+    </g>
+  </g>
+  <mask id="path-380-inside-4" fill="white">
+    <rect x="593" y="-76" width="80" height="45" rx="4" transform="rotate(90 593 -76)"/>
+  </mask>
+  <rect x="593" y="-76" width="80" height="45" rx="4" transform="rotate(90 593 -76)" stroke="white" stroke-width="16" mask="url(#path-380-inside-4)"/>
+  <mask id="path-381-inside-5" fill="white">
+    <rect x="493" y="513" width="61" height="34" rx="4" transform="rotate(90 493 513)"/>
+  </mask>
+  <rect x="493" y="513" width="61" height="34" rx="4" transform="rotate(90 493 513)" stroke="white" stroke-width="12" mask="url(#path-381-inside-5)"/>
+</svg>

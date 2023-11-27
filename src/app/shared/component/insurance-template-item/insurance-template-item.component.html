@@ -1,0 +1,49 @@
+<div class="recent-insurance-template-wrap" (click)="onClickTemplate()">
+  <div class="insurance">
+    <div class="header">
+      <div class="image-wrap">
+        <div class="image" [style.background-image]="'url('+ insuranceTemplateItem?.image + ')'"></div>
+      </div>
+      <div class="title">
+        <span class="company">[{{ commonInsurance?.insuranceListObj[insuranceTemplateItem.insurance] }}]</span>
+        {{insuranceTemplateItem.name}}
+      </div>
+    </div>
+    <div class="content">
+      <div class="item">
+        <div class="label">납입 기간</div>
+        <div class="value"><span>{{insuranceTemplateItem.payment_period}}</span> {{commonInsurance?.paymentPeriodType[insuranceTemplateItem.payment_period_type]}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">보장 기간</div>
+        <div class="value"><span>{{insuranceTemplateItem.warranty_period}}</span> {{commonInsurance?.warrantyPeriodType[insuranceTemplateItem.warranty_period_type]}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">금액</div>
+        <div class="value"><span>{{insuranceTemplateItem?.monthly_assurance_premium || insuranceTemplateItem.monthly_premiums | number}}</span> 원</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="tag-container">
+    <div class="title">
+      설계 관련 태그
+    </div>
+    <div class="tag-list">
+      <ng-template ngFor="" [ngForOf]="insuranceTemplateItem?.tags" let-tagItem let-tagIndex="index">
+<!--        <ng-template [ngIf]="tagIndex < 2">-->
+          <div class="tag">
+            {{tagItem}}
+          </div>
+<!--        </ng-template>-->
+<!--        <div class="tag" *ngIf="tagIndex === 2">-->
+<!--          <div class="dot"></div>-->
+<!--          <div class="dot"></div>-->
+<!--          <div class="dot"></div>-->
+<!--        </div>-->
+      </ng-template>
+    </div>
+  </div>
+</div>

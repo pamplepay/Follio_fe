@@ -1,0 +1,28 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+            <div class="modal-img"></div>
+            <p class="modal-txt">비밀번호 재설정</p>
+            <div class="btn-icon btn-close gray" (click)="onClose()"></div>
+        </div>
+
+        <div class="modal-body">
+            <p class="modal-txt">
+                가입 시 입력한 이메일 주소로 비밀번호 재설정 링크가 전송됩니다.
+            </p>
+
+            <div class="form-input-with-delete">
+                <input type="text" placeholder="이메일 입력"
+                       [class.error]="isShowValidLine && !emailControl?.valid"
+                       (keydown.enter)="onSend()"
+                       class="form-input" [tabIndex]="1" [formControl]="emailControl">
+                <button class="btn-icon btn-delete" (click)="emailControl?.setValue('')">삭제</button>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-medium btn-solid-primary" [tabIndex]="2" (click)="onSend()">전송</button>
+        </div>
+    </div>
+</div>

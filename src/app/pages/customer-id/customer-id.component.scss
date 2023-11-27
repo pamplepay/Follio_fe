@@ -1,0 +1,133 @@
+@import "../../../assets/scss/utils/variables";
+
+
+.portfolio-container {
+  display: flex;
+
+  section {
+    margin-top: 0;
+    flex: 1;
+    margin-left: 44px;
+    min-height: 453px;
+    &:first-child {
+      margin-left: 0;
+    }
+
+    .add-insurance {
+      margin-top: 25px;
+      height: 86px;
+    }
+
+    > .info-wrap {
+      margin-top: 12px;
+      height: 119px;
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      .div {
+        background: rgba(20, 50, 67, 0.2);
+        width: 1px;
+        height: 36px;
+      }
+      > .left, .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      border-radius: 10px;
+    }
+
+    .insurance-list {
+      app-insurance-item {
+        margin-top: 12px;
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.customer-container {
+  margin-top: 34px;
+
+  > .list {
+    display: grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 18px;
+    //grid-template-columns: 33% 33% 33%;
+    grid-template-columns: calc(25% - 12px) calc(25% - 12px) calc(25% - 12px) calc(25% - 12px); /* 명시적 2개 행 정의 */
+    grid-auto-rows: auto;
+
+    .customer-wrap {
+      cursor: pointer;
+      background-color: $white;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      &:hover {
+        box-shadow: 0px 10px 20px -7px rgba(147, 182, 193, 0.6), 0px 4px 31px rgba(147, 182, 193, 0.2);
+      }
+      height: 89px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      position: relative;
+
+      &:before {
+        position: absolute;
+        content: "";
+        top: 36px;
+        right: 14px;
+        background-image: url("/assets/images/el-arrow-right-gray.svg");
+        width: 24px;
+        height: 24px;
+      }
+
+      .customer {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 167%;
+        color: $black-70;
+
+        .name {
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 167%;
+          color: $black;
+        }
+      }
+
+      .contract {
+        font-size: 16px;
+        color: $black-60;
+      }
+    }
+
+    .add-button {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 167%;
+      color: $white;
+      height: 89px;
+      background: $primary;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      border-radius: 10px;
+
+      > .icon {
+        width: 24px;
+        height: 24px;
+        background-image: url("/assets/images/ico-add.svg");
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.nothing {
+  padding: 76px 0;
+}

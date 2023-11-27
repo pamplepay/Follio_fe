@@ -1,0 +1,233 @@
+@import "../../../assets/scss/utils/variables";
+
+.page-container {
+  > .header {
+    margin-bottom: 24px;
+  }
+
+  > .btn-wrap {
+    width: 350px;
+    margin: 60px auto;
+  }
+}
+section {
+  margin-top: 40px;
+}
+
+.insurance-info-container {
+  margin-top: 0;
+}
+
+.product-name-wrap {
+  margin-top: 16px;
+  display: flex;
+  .form-dropdown-wrap {
+    width: 202px;
+    margin-right: 16px;
+  }
+  .form-input-wrap {
+    flex: 1;
+  }
+}
+
+.sub-title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 167%;
+  &.detail {
+    margin-top: 40px;
+  }
+}
+
+.product-detail-wrap {
+  display: flex;
+  > div {
+    flex: 1;
+  }
+  > div + div {
+    margin-left : 80px;
+  }
+
+  .form-input-wrap {
+    margin-top: 32px;
+    .form-label {
+      min-width: 100px;
+    }
+  }
+}
+
+.case-list-container {
+  .case-container {
+    margin-bottom: 32px;
+    > .title {
+      margin-top: 16px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 167%;
+    }
+
+    > .case-table {
+      display: flex;
+      flex-direction: column;
+      .header, .category-wrap {
+        display: flex;
+        > div + div {
+          margin-left: 16px;
+        }
+      }
+      .category, .row, .case-item {
+        background: #FFFFFF;
+        box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+        border-radius: 10px;
+      }
+
+      .category, .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      > .header {
+        margin-top: 12px;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 167%;
+        color: $black-60;
+        .category {
+          height: 48px;
+        }
+
+        > .row {
+          flex: 1;
+          padding: 0 30px;
+          height: 48px;
+          display: flex;
+          > div {
+            flex: 1;
+            margin-left: 12px;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+
+      .category {
+        min-width: 122px;
+        text-align: center;
+      }
+
+      > .category-wrap {
+        margin-top: 12px;
+        .category {
+          font-weight: bold;
+          font-size: 15px;
+          line-height: 147%;
+          color: $black;
+        }
+        > .case-list {
+          display: flex;
+          flex-direction: column;
+          > .case-item {
+            padding: 30px;
+            margin-top: 12px;
+            &:first-child {
+              margin-top: 0;
+            }
+            > .title {
+              font-weight: bold;
+              font-size: 15px;
+              line-height: 167%;
+              color: $black;
+            }
+
+            .case-input-wrap {
+              display: flex;
+              margin-top: 12px;
+              > div {
+                flex: 1;
+                display: flex;
+                margin-left: 12px;
+                &:first-child {
+                  margin-left: 0;
+                }
+                > div {
+                  flex: 1;
+                  margin-left: 4px;
+                  &:first-child {
+                    margin-left: 0;
+                  }
+                }
+              }
+            }
+
+            .btn-wrap {
+              button + button {
+                margin-left: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.comment-container {
+  .form-input-wrap + .form-input-wrap {
+    margin-top: 20px;
+  }
+  >.content {
+    padding: 30px 23px;
+    > .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      width: 100%;
+
+      > .tag {
+        display: flex;
+        align-items: center;
+        padding: 8px 14px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 167%;
+        background: #E3EAF0;
+        border-radius: 50px;
+        color: $black-80;
+
+        margin-left: 8px;
+        &:first-child {
+          margin-left: 0;
+        }
+
+        img {
+          margin-left: 8px;
+        }
+
+        > .dot {
+          width: 4px;
+          height: 4px;
+          background: $black-80;
+          border-radius: 4px;
+          margin-right: 5px;
+          &:first-child {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.insured_name {
+  display: flex;
+  align-items: center;
+  .form-check-wrap {
+    position: absolute;
+    left: 16px;
+
+    .custom-label-txt {
+      margin-right: 5px;
+      color: $black-80;
+    }
+  }
+}

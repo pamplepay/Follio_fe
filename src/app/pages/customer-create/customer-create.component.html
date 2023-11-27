@@ -1,0 +1,104 @@
+<div class="bg">
+  <div class="bg-image"></div>
+</div>
+
+<div class="center-container">
+  <div class="box-container" *ngIf="!isDone && isFourTeen">
+    <div class="title">일반 고객 추가</div>
+    <div class="sub-title">추가 정보를 입력해 주세요.</div>
+
+    <form class="form-group" [formGroup]="form">
+      <div class="form-input-wrap" [class.error]="form.get('name').invalid && isShowValidLine">
+        <div class="form-label">이름</div>
+        <div class="input-wrap">
+          <input type="text" class="form-input" id="name" placeholder="이름" [formControlName]="'name'">
+          <div class="error-message">{{form.get('name').errors?.message || '입력해 주세요.'}}</div>
+        </div>
+      </div>
+      <div class="form-input-wrap" [class.error]="form.get('mobile_phone_number').invalid && isShowValidLine">
+        <div class="form-label">전화번호</div>
+        <div class="input-wrap">
+          <input type="text" class="form-input" id="mobile_phone_number" placeholder="000-0000-0000"
+                 [imask]="{mask: '000-0000-0000'}"
+                 formControlName="mobile_phone_number">
+          <div class="error-message">{{form.get('mobile_phone_number').errors?.message || '입력해 주세요.'}}</div>
+        </div>
+      </div>
+    </form>
+
+    <div class="btn-wrap">
+      <button class="btn" type="submit" (click)="onNext()">다음</button>
+    </div>
+  </div>
+
+  <div class="box-container" *ngIf="!isDone && isFourTeen === false">
+    <div class="title">미성년자 고객 추가</div>
+    <div class="sub-title">추가 정보를 입력해 주세요.</div>
+
+    <form class="form-group" [formGroup]="form">
+      <section class="name-container">
+        <div class="header">
+          <div class="title">미성년자</div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('name').invalid && isShowValidLine">
+          <div class="form-label">이름</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input" [formControlName]="'name'">
+            <div class="error-message">{{form.get('name').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('birth_day').invalid && isShowValidLine">
+          <div class="form-label">
+            생년월일<span class="sub-label">(8자리)</span>
+          </div>
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="0000.00.00" [imask]="{mask: '0000.00.00'}" [formControlName]="'birth_day'">
+            <div class="error-message">{{form.get('birth_day').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="parent-container">
+        <div class="header">
+          <div class="title">법정 대리인</div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('legal_representative_name').invalid && isShowValidLine">
+          <div class="form-label">이름</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="홍길동" [formControlName]="'legal_representative_name'">
+            <div class="error-message">{{form.get('legal_representative_name').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('relation_name').invalid && isShowValidLine">
+          <div class="form-label">관계</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="모" [formControlName]="'relation_name'">
+            <div class="error-message">{{form.get('relation_name').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('mobile_phone_number').invalid && isShowValidLine">
+          <div class="form-label">연락처</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="000-0000-0000"
+                   formControlName="mobile_phone_number"
+                   [imask]="{mask: '000-0000-0000'}">
+            <div class="error-message">{{form.get('mobile_phone_number').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <div class="btn-wrap">
+      <button class="btn" (click)="onNext()">다음</button>
+    </div>
+  </div>
+
+  <div class="box-container done-alert" *ngIf="isDone">
+    <div class="title">메시지 발송 완료</div>
+    <div class="sub-title">{{this.form.get('name').value}}고객님께 동의 링크가 전달되었습니다.<br/>동의가 완료되면 알려드릴게요 :)</div>
+
+    <div class="btn-wrap fit">
+      <button class="btn" (click)="onGotoCustomerList()">고객 리스트로 이동</button>
+    </div>
+  </div>
+</div>

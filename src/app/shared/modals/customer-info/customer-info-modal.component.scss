@@ -1,0 +1,83 @@
+@import "../../../../assets/scss/utils/variables";
+
+.modal-content {
+  width: 933px;
+  height: 717px;
+  padding: 0;
+  display: flex;
+  background-color: transparent;
+  section {
+    padding: 58px 60px;
+    border-radius: 10px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+
+    &.memo-container {
+      width: 373px;
+      background-color: #F8FAFB;
+
+      .form-input-wrap {
+        flex: 1;
+      }
+    }
+
+    &.form-container {
+      width: 560px;
+    }
+    > .header {
+      margin-bottom: 17px;
+      > .title {
+        font-weight: bold;
+        font-size: 21px;
+        line-height: 167%;
+      }
+    }
+
+    .list {
+      flex: 1;
+      overflow: auto;
+      .form-input-wrap {
+        margin-top: 36px;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .form-input-wrap-group {
+        display: flex;
+        margin-top: 36px;
+        .form-input-wrap {
+          margin-top: 0;
+
+          .form-input {
+            max-width: 95px;
+          }
+        }
+
+        .form-input-wrap + .form-input-wrap {
+          margin-left: 12px;
+          justify-content: space-between;
+          flex: 1;
+          .right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            .input-wrap {
+              width: unset;
+            }
+          }
+        }
+      }
+    }
+
+    .btn-wrap {
+      margin-top: 32px;
+      button {
+        font-weight: normal;
+      }
+    }
+  }
+
+}

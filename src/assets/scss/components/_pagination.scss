@@ -1,0 +1,118 @@
+.pagination {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 40px;
+
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: left;
+
+  color: $black-60;
+  .select {
+    margin-right: 40px;
+    margin-bottom: 1px;
+    width: 60px;
+    position: relative;
+    padding: 0 4px;
+    margin-left: 10px;
+    border-radius: 4px;
+    &:hover {
+      background-color: $black-10;
+    }
+    &.selected {
+      background-color: $black-10;
+      border-radius: 4px 4px 0 0;
+      .value {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
+      .option-list {
+        display: block;
+      }
+    }
+    .value {
+      position: relative;
+      color: $primary;
+      font-weight: bold;
+      padding-right: 20px;
+      padding-top: 2px;
+      cursor: pointer;
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 4px;
+        width: 16px;
+        height: 16px;
+        background-image: url("/assets/images/ico-dropdown.svg");
+      }
+    }
+    .option-list {
+      display: none;
+      position: absolute;
+      width: 100%;
+      margin-left: -4px;
+      .option {
+        position: relative;
+        height: 20px;
+        background: $white;
+        cursor: pointer;
+        padding: 2px 20px 0 4px;
+        text-align: left;
+        &:last-child {
+          border-radius: 0px 0px 4px 4px;
+        }
+        &:hover {
+          background-color: $black-10;
+        }
+        &.selected {
+          &:after {
+            content: '';
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            width: 12px;
+            height: 8px;
+            background-image: url("/assets/images/ico-select.svg");
+          }
+        }
+      }
+    }
+  }
+
+  .primary {
+    color: $primary;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+  .btn-prev {
+    margin-left: 40px;
+    opacity: 0.6;
+    background-image: url("/assets/images/ico-prev.svg");
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-next {
+    opacity: 0.6;
+    background-image: url("/assets/images/ico-next.svg");
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
+  .text {
+    margin-right: 12px;
+  }
+}

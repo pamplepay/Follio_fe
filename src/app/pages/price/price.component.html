@@ -1,0 +1,52 @@
+<div class="page-container price-container">
+  <div class="header">
+    <div class="title">
+      가격 정책
+    </div>
+    <div class="description">
+      <p>구매 전, 무료로 이용해 보세요.</p>
+      <p>
+        고객 10명까지 자유롭게 쓸 수 있습니다.
+      </p>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn" (click)="onGotoMain()">무료 체험하기</button>
+    </div>
+  </div>
+
+
+  <div class="price-list">
+    <ng-template ngFor="" [ngForOf]="membershipList" let-membershipIndex="index" let-membershipItem>
+      <div class="item">
+        <div class="header">
+          <div class="month">
+            {{membershipItem.name}}
+          </div>
+          <div class="price" *ngIf="membershipItem.period_month > 1">
+            <span class="label" *ngIf="membershipItem.is_recommend">추천</span>
+            월 {{membershipItem.month_amount | number}}원
+          </div>
+        </div>
+        <div class="sale-wrap" *ngIf="membershipItem.sale_percent > 0 ">
+          <div class="sale">{{membershipItem.sale_percent}}% 할인</div>
+          <div class="sum">{{membershipItem.product_amount | number}}원</div>
+        </div>
+        <div class="price">{{membershipItem.amount | number}}원</div>
+        <div class="btn-wrap">
+          <button class="btn" (click)="onClickMembershipItem(membershipItem, membershipIndex)">구매하기</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="copy-container">
+    <div class="title">😇 동료 초대하고 1개월권 받기</div>
+    <div class="text">내 추천인 코드를 등록한 동료 1명당 1개월권 하나를 받을 수 있어요.</div>
+
+    <div class="btn-wrap">
+      <button class="btn primary-line" (click)="onCopyMyCode(loginUser?.recommend_code)">내 추천인 코드 복사</button>
+    </div>
+  </div>
+  <div class="description">※ 추천인 코드는 회원 가입을 완료한 후 마이 페이지에서 등록할 수 있어요.</div>
+  <div class="description" style="margin-top: 4px;">※ 팀 단위 구매는 별도 문의해 주세요.</div>
+</div>

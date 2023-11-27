@@ -1,0 +1,105 @@
+@import "../../../assets/scss/utils/variables";
+
+.page-container {
+  max-width: 962px;
+
+  section {
+    margin-top: 40px;
+    &:first-child {
+      margin-top: 72px;
+    }
+    &.half {
+      width: 60%;
+    }
+    > .content {
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 167%;
+
+      .name {
+        display: flex;
+      }
+
+      .form-input-wrap {
+        width: 100%;
+        .error-message {
+          position: relative;
+        }
+      }
+
+      > .more {
+        color: $black-40;
+        position: relative;
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 167%;
+        padding-right: 29px;
+        display: flex;
+        align-items: center;
+
+        &:before {
+          position: absolute;
+          content: "";
+          top: 0;
+          right: 0;
+          background-image: url("/assets/images/el-arrow-right-gray.svg");
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    .description {
+      margin-top: 12px;
+      color: $black-40;
+    }
+  }
+
+}
+
+.btn-wrap {
+  width: 195px;
+  margin-top: 45px;
+  margin: 45px auto;
+}
+
+.done-container {
+  width: 100%;
+  height: calc(100vh - 174px - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .done-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .icon {
+      width: 120px;
+      height: 120px;
+      background-image: url("/assets/images/el-done.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .title {
+      margin-top: -12px;
+
+      font-weight: bold;
+      font-size: 21px;
+      line-height: 167%;
+      text-align: center;
+
+      color: $black-80;
+
+    }
+  }
+
+}

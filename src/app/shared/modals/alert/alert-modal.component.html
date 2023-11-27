@@ -1,0 +1,19 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content center" [style.width]="width" (click)="$event.stopPropagation()">
+    <button class="close" (click)="onClose()"></button>
+    <div class="modal-header">
+      <p class="sub-title">{{title}}</p>
+    </div>
+    <div class="modal-body">
+      <p class="modal-txt" [innerHTML]="body">
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <div class="btn-wrap">
+        <button class="btn line small" *ngIf="isConfirm" [tabIndex]="1" (click)="onCancel()">{{btnCancelName}}</button>
+        <button class="btn small" [class.line]="!isPrimary" [tabIndex]="2" (click)="onConfirm()">{{btnConfirmName}}</button>
+      </div>
+    </div>
+  </div>
+</div>

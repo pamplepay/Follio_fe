@@ -1,0 +1,21 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <div class="modal-img">
+        <img src="/assets/images/img-dummy.png" alt="">
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <p class="email">{{email}}</p>
+      <p class="modal-txt">
+        위 이메일 주소로 인증을 위한 메일이 전송되었습니다. 이메일을 확인해 주세요.
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-medium btn-solid-primary" [tabIndex]="1" (click)="onClose()">확인</button>
+    </div>
+  </div>
+</div>

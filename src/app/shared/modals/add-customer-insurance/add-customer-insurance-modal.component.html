@@ -1,0 +1,84 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="tab-wrap">
+        <div class="tab" [class.is-active]="selectedTabName === 'customer'" (click)="onSelectTab('customer')">{{customer.name}}님 소유
+          계약
+        </div>
+        <div class="tab" [class.is-active]="selectedTabName === 'insurance'" (click)="onSelectTab('insurance')">자주 쓰는
+          설계
+        </div>
+      </div>
+    </div>
+    <div class="list-container">
+      <div class="header">
+        <div class="form-input-wrap search" [class.error]="searchFormControl.invalid">
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="상품명, 설계명, 태그 입력" [formControl]="searchFormControl">
+            <div class="error-message">{{searchFormControl.errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="insurance-list">
+        <ng-template [ngIf]="selectedTabName === 'customer'">
+          <ng-template ngFor="" [ngForOf]="customerInsuranceList" let-customerInsuranceItem
+                       let-customerInsuranceIndex="index">
+            <div class="select-insurance-wrap">
+              <div class="check">
+                <label class="form-check-wrap">
+                  <input type="checkbox"
+                         [checked]="!!customerInsuranceItem?.checked"
+                         class="form-check">
+                  <span class="custom-check"></span>
+                </label>
+              </div>
+              <div class="insurance">
+                <app-insurance-item
+                    (click)="onClickInsurance(customerInsuranceItem)"
+                    [insuranceItem]="customerInsuranceItem"></app-insurance-item>
+              </div>
+            </div>
+          </ng-template>
+
+          <div class="nothing" *ngIf="customerInsuranceList?.length === 0">
+            <span *ngIf="!searchKeyword">{{customer.name}}님 소유 계약을 찾을 수 없습니다.</span>
+            <span *ngIf="searchKeyword">{{customer.name}}님 소유 계약에서 "{{searchKeyword}}" 계약을 찾을 수 없습니다.</span>
+          </div>
+        </ng-template>
+
+        <ng-template [ngIf]="selectedTabName === 'insurance'">
+          <ng-template ngFor="" [ngForOf]="insuranceTemplateList" let-insuranceTemplateItem
+                       let-insuranceTemplateIndex="index">
+            <div class="select-insurance-wrap">
+              <div class="check">
+                <label class="form-check-wrap">
+                  <input type="checkbox"
+                         [checked]="!!insuranceTemplateItem?.checked"
+                         class="form-check">
+                  <span class="custom-check"></span>
+                </label>
+              </div>
+              <div class="insurance">
+                <app-insurance-item
+                    (click)="onClickInsurance(insuranceTemplateItem)"
+                    [insuranceItem]="insuranceTemplateItem"
+                    [isTag]="true"></app-insurance-item>
+              </div>
+            </div>
+          </ng-template>
+
+          <div class="nothing" *ngIf="insuranceTemplateList?.length === 0">
+            <span *ngIf="!searchKeyword">자주 쓰는 설계를 찾을 수 없습니다.</span>
+            <span *ngIf="searchKeyword">자주 쓰는 설계에서 "{{searchKeyword}}" 설계를 찾을 수 없습니다.</span>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="btn-wrap">
+        <button class="btn line" (click)="onClose()">닫기</button>
+        <button class="btn" (click)="onSubmit()">적용하기</button>
+      </div>
+    </div>
+  </div>
+</div>

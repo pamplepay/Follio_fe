@@ -1,0 +1,29 @@
+.modal-content {
+  padding: 30px 60px 36px;
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background-image: url("/assets/images/el-close-gray.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .modal-header {
+    margin-bottom: 0;
+  }
+  .modal-body {
+    margin-top: 3px;
+  }
+  .modal-footer {
+    margin-top: 16px;
+  }
+
+  button {
+    font-size: 13px;
+    line-height: 167%;
+    font-weight: normal;
+  }
+}

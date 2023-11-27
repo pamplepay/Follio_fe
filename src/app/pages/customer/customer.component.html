@@ -1,0 +1,58 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header">
+      <div class="title">고객 리스트</div>
+      <div class="btn-wrap">
+        <button class="btn btn-add" (click)="onAddCustomer()">
+          <img src="/assets/images/ico-add.svg" alt="">
+          고객 추가
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <div class="form-input-wrap search">
+      <input type="text" class="form-input" placeholder="고객 이름" [formControl]="searchControl">
+    </div>
+  </div>
+
+  <div class="customer-container" *ngIf="customerList?.length > 0">
+    <div class="header">
+      <div class="cell name">이름</div>
+      <div class="cell birth">생년월일</div>
+      <div class="cell phone">연락처</div>
+      <div class="cell job">직업</div>
+      <div class="cell etc"></div>
+    </div>
+
+    <ng-template ngFor [ngForOf]="customerList" let-customerItem let-customerIndex="index">
+      <div class="item" (click)="onClickCustomer(customerItem)">
+        <div class="cell name"><strong>{{customerItem.name}}</strong>님</div>
+        <div class="cell birth">{{customerItem.birth_day}}</div>
+        <div class="cell phone">{{customerItem.mobile_phone_number | imask: {mask: '000-0000-0000'} }}</div>
+        <div class="cell job">{{customerItem.job}}</div>
+        <div class="cell etc">
+          <button class="btn-ico btn-right"></button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="pagination" *ngIf="customerList?.length > 0">
+    <span class="primary">{{indexPage}}</span>of {{totalPageCount}}
+
+    <button type="button" class="btn-icon btn-prev" [attr.disabled]="indexPage === 1 ? true : undefined"
+            (click)="onPrevPage()">prev
+    </button>
+    <button type="button" class="btn-icon btn-next"
+            [attr.disabled]="indexPage === totalPageCount ? true : undefined" (click)="onNextPage()">next
+    </button>
+  </div>
+
+  <div class="nothing" *ngIf="customerList?.length === 0">
+    <div class="icon"></div>
+    <div class="title">등록된 고객이 없어요.</div>
+    <div class="sub-title">{{searchedKeyword ? '이름을 다시 한 번 확인해 주세요.' : '고객을 추가해 주세요.'}}</div>
+  </div>
+</div>

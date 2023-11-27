@@ -1,0 +1,539 @@
+<div class="page-container fixed-header">
+  <div class="page-header is-customer">
+    <div class="path">
+      <span (click)="onGotoCustomerList()">고객 리스트</span>
+      <div class="btn-icon btn-right"></div>
+      <span (click)="onClickCustomer(customer?.id)">{{customer?.name}}님</span>
+      <div class="btn-icon btn-right"></div>
+      {{customerInsurance?.portfolio_type === 2 ? '제안 포트폴리오' : '기존 포트폴리오'}}
+    </div>
+    <div class="header">
+      <div class="back" (click)="onBack()"></div>
+      <div class="name-wrap">
+        <div class="name">
+          <strong>{{customer?.name}}</strong>고객님
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn primary-line" (click)="onSubmit()">저장하기</button>
+        <button class="btn" (click)="onGotoAnalysis()" *ngIf="customerInsurance">분석 결과 보기</button>
+        <button class="btn-menu">
+          <div class="menu-list">
+            <div class="menu-item" (click)="onDeleteInsurance()">
+              삭제하기
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section class="insurance-info-container" [formGroup]="form">
+    <div class="header">
+      <div class="title">상품 정보</div>
+      <div class="form-radio-group-wrap">
+        <label class="form-radio-wrap" (click)="onClickInsuranceType(1)">
+          <input type="radio"
+                 name="pin"
+                 value="not-pin"
+                 class="form-radio" [checked]="form?.get('insurance_type').value === 1">
+          <span class="custom-radio"></span>
+          <span class="custom-label-txt">생명보험</span>
+        </label>
+        <label class="form-radio-wrap" (click)="onClickInsuranceType(2)">
+          <input type="radio"
+                 name="pin"
+                 value="pin"
+                 class="form-radio" [checked]="form?.get('insurance_type').value === 2">
+          <span class="custom-radio"></span>
+          <span class="custom-label-txt">손해보험</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="sub-title">상품명</div>
+      <div class="product-name-wrap">
+        <div class="form-dropdown-wrap" tabindex="0" [class.error]="form?.get('insurance').invalid && isShowValidLine">
+          <span class="custom-select" *ngIf="form?.get('insurance').value">{{commonInsurance?.insuranceListObj[form?.get('insurance').value]}}</span>
+          <span class="custom-select" *ngIf="!form?.get('insurance').value && form?.get('insurance_type').value === 1">생명보험</span>
+          <span class="custom-select" *ngIf="!form?.get('insurance').value && form?.get('insurance_type').value === 2">손해보험</span>
+          <div class="custom-dropdown">
+            <ul class="dropdown-list">
+              <ng-template [ngIf]="form?.get('insurance_type').value === 1">
+                <ng-template ngFor="" [ngForOf]="commonInsurance?.life_insurance_list" let-insuranceItem
+                             let-insuranceIndex="index">
+                  <li class="dropdown-item" [class.active]="insuranceItem.id === form?.get('insurance').value"
+                      (click)="onSelect(insuranceItem.id, form?.get('insurance'))">{{insuranceItem.name}}</li>
+                </ng-template>
+              </ng-template>
+              <ng-template [ngIf]="form?.get('insurance_type').value === 2">
+                <ng-template ngFor="" [ngForOf]="commonInsurance?.loss_insurance_list" let-insuranceItem
+                             let-insuranceIndex="index">
+                  <li class="dropdown-item" [class.active]="insuranceItem.id === form?.get('insurance').value"
+                      (click)="onSelect(insuranceItem.id, form?.get('insurance'))">{{insuranceItem.name}}</li>
+                </ng-template>
+              </ng-template>
+            </ul>
+          </div>
+
+          <div class="error-message">선택해 주세요.</div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form?.get('name').invalid && isShowValidLine">
+          <div class="input-wrap">
+            <input type="text" class="form-input" placeholder="상품명을 입력해 주세요." [formControlName]="'name'">
+            <div class="error-message">상품명을 입력해 주세요.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-title detail">상세 입력</div>
+      <div class="product-detail-wrap">
+        <div>
+          <div class="form-input-wrap" [class.error]="form?.get('contractor_name').invalid && isShowValidLine">
+            <div class="form-label required">계약자</div>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="김보험" [formControlName]="'contractor_name'">
+              <div class="error-message">{{form?.get('contractor_name').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+          <div class="form-input-wrap" [class.error]="form?.get('insured_name').invalid && isShowValidLine">
+            <div class="form-label required">피보험자</div>
+            <div class="input-wrap insured_name">
+              <input type="text" class="form-input right" placeholder="김보험" [formControlName]="'insured_name'">
+              <div class="error-message bottom">{{form?.get('insured_name').errors?.message || '입력해 주세요.'}}</div>
+              <label class="form-check-wrap">
+                <input type="checkbox"
+                       [checked]="form?.get('is_same_insured').value"
+                       (change)="onChangeSameInsured($event)"
+                       class="form-check"/>
+                <span class="custom-label-txt" (click)="onClickSameName($event)">계/피 동일</span>
+                <span class="custom-check" (click)="onClickSameName($event)"></span>
+              </label>
+            </div>
+          </div>
+
+          <ng-template [ngIf]="form?.get('insurance_type').value === 1">
+            <div class="form-input-wrap price" [class.error]="form?.get('monthly_premiums').invalid && isShowValidLine">
+              <div class="form-label required">월 납입 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'monthly_premiums'"
+                       [unmask]="'typed'" [imask]="thousandsMask">
+                <div class="error-message">{{form?.get('monthly_premiums').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+
+            <div class="form-input-wrap price"
+                 [class.error]="form?.get('monthly_contract_premium').invalid && isShowValidLine">
+              <div class="form-label required">월 주계약 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0"
+                       [formControlName]="'monthly_contract_premium'" [imask]="thousandsMask" [unmask]="'typed'">
+                <div class="error-message">{{form?.get('monthly_contract_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+            <div class="form-input-wrap price"
+                 [class.error]="form?.get('monthly_special_premium').invalid && isShowValidLine">
+              <div class="form-label">월 특약 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0"
+                       [formControlName]="'monthly_special_premium'" [readOnly]="true" [imask]="thousandsMask"
+                       [unmask]="'typed'">
+                <div class="error-message">{{form?.get('monthly_special_premium').value}}{{form?.get('monthly_special_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+            <div class="form-input-wrap with-select"
+                 [class.error]="form?.get('monthly_earned_premium').invalid && isShowValidLine">
+              <div class="form-label">월 적립 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [readOnly]="true" [imask]="thousandsMask"
+                       [unmask]="'typed'"
+                       [formControlName]="'monthly_earned_premium'">
+                <div class="error-message">{{form?.get('monthly_earned_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+              <div class="form-dropdown-wrap refund_type right" tabindex="0">
+                <span class="custom-select">{{commonInsurance?.refundType[form?.get('refund_type').value]}}</span>
+                <div class="custom-dropdown">
+                  <ul class="dropdown-list">
+                    <ng-template ngFor="" [ngForOf]="commonInsurance?.refundTypeList" let-typeItem
+                                 let-typeIndex="index">
+                      <li class="dropdown-item" [class.active]="form?.get('refund_type').value === typeItem.value"
+                          (click)="onSelect(typeItem.value, form?.get('refund_type'))">{{typeItem.name}}</li>
+                    </ng-template>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template [ngIf]="form?.get('insurance_type').value === 2">
+            <div class="form-input-wrap price"
+                 [class.error]="form?.get('monthly_assurance_premium').invalid && isShowValidLine">
+              <div class="form-label required">
+                월 보장 보험료
+                <div class="tooltip-wrap absolute" [style.right]="'-8px'">
+                  <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+                  <div class="tooltip-box">
+                    <div class="tooltip top" style="width: 320px;">월 갱신 보험료와 월 비갱신 보험료를 더한 값이에요.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0"
+                       [formControlName]="'monthly_assurance_premium'"
+                       [imask]="thousandsMask" [unmask]="'typed'">
+                <div class="error-message">{{form?.get('monthly_assurance_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+
+            <div class="form-input-wrap price"
+                 [class.error]="form?.get('monthly_renewal_premium').invalid && isShowValidLine">
+              <div class="form-label">
+                월 갱신 보험료
+                <div class="tooltip-wrap absolute" [style.right]="0">
+                  <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+                  <div class="tooltip-box">
+                    <div class="tooltip top" style="width: 500px;">단독 실비처럼 갱신형 상품일 경우 "월 보장 보험료"와 같은 값을 입력해 주세요.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0"
+                       [formControlName]="'monthly_renewal_premium'" [imask]="thousandsMask" [unmask]="'typed'">
+                <div class="error-message">{{form?.get('monthly_renewal_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+            <div class="form-input-wrap price"
+                 [class.error]="form?.get('monthly_earned_premium').invalid && isShowValidLine">
+              <div class="form-label">월 적립 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'monthly_earned_premium'"
+                       (focus)="onFocusMonthlyEarnedPremium($event)"
+                       [imask]="thousandsMask" [unmask]="'typed'">
+                <div class="error-message">{{form?.get('monthly_earned_premium').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+
+            <div class="form-input-wrap price" [class.error]="form?.get('monthly_premiums').invalid && isShowValidLine">
+              <div class="form-label">월 납입 보험료</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'monthly_premiums'"
+                       [imask]="thousandsMask" [unmask]="'typed'" [readOnly]="true">
+                <div class="error-message">{{form?.get('monthly_premiums').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div>
+          <div class="form-input-wrap with-select"
+               [class.error]="form?.get('payment_period').invalid && isShowValidLine">
+            <div class="form-label required">납입 기간</div>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0" [formControlName]="'payment_period'">
+              <div class="error-message">{{form?.get('payment_period').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+            <div class="form-dropdown-wrap right" tabindex="0">
+              <span
+                  class="custom-select">{{commonInsurance?.paymentPeriodType[form?.get('payment_period_type').value]}}</span>
+              <div class="custom-dropdown">
+                <ul class="dropdown-list">
+                  <ng-template ngFor="" [ngForOf]="commonInsurance?.paymentPeriodTypeList" let-typeItem
+                               let-typeIndex="index">
+                    <li class="dropdown-item" [class.active]="form?.get('payment_period_type').value === typeItem.value"
+                        (click)="onSelect(typeItem.value, form?.get('payment_period_type'))">{{typeItem.name}}</li>
+                  </ng-template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-input-wrap with-select"
+               [class.error]="form?.get('warranty_period').invalid && isShowValidLine">
+            <div class="form-label required">
+              보장 기간
+              <div class="tooltip-wrap absolute" *ngIf="form?.get('insurance_type').value === 1">
+                <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+                <div class="tooltip-box">
+                  <div class="tooltip top" style="width: 250px;">주계약의 보장 기간을 입력해 주세요.</div>
+                </div>
+              </div>
+            </div>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0"
+                     [attr.disabled]="form?.get('warranty_period_type').value === 3 ? true : undefined"
+                     [formControlName]="'warranty_period'">
+              <div class="error-message">{{form?.get('warranty_period').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+            <div class="form-dropdown-wrap right" tabindex="0">
+              <span
+                  class="custom-select">{{commonInsurance?.warrantyPeriodType[form?.get('warranty_period_type').value]}}</span>
+              <div class="custom-dropdown">
+                <ul class="dropdown-list">
+                  <ng-template ngFor="" [ngForOf]="commonInsurance?.warrantyPeriodTypeList" let-typeItem
+                               let-typeIndex="index">
+                    <ng-template [ngIf]="form?.get('insurance_type').value === 2 && typeIndex < 2">
+                      <li class="dropdown-item"
+                          [class.active]="form?.get('warranty_period_type').value === typeItem.value"
+                          (click)="onSelect(typeItem.value, form?.get('warranty_period_type'))">{{typeItem.name}}</li>
+                    </ng-template>
+                    <ng-template [ngIf]="form?.get('insurance_type').value === 1">
+                      <li class="dropdown-item"
+                          [class.active]="form?.get('warranty_period_type').value === typeItem.value"
+                          (click)="onSelect(typeItem.value, form?.get('warranty_period_type'))">{{typeItem.name}}</li>
+                    </ng-template>
+
+                  </ng-template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-input-wrap" [class.error]="form?.get('contract_date').invalid && isShowValidLine">
+            <div class="form-label required">계약일</div>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0000.00.00"
+                     [imask]="{mask: '0000.00.00'}"
+                     [formControlName]="'contract_date'">
+              <div class="error-message">{{form?.get('contract_date').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+          <ng-template [ngIf]="form?.get('insurance_type').value === 1">
+            <div class="form-input-wrap">
+              <div class="form-label">갱신 특약 만기일</div>
+              <div class="form-dropdown-wrap right" tabindex="0" [class.error]="form?.get('renewal_special_expiry').invalid && isShowValidLine">
+                <span class="custom-select">{{form?.get('renewal_special_expiry').value ? form?.get('renewal_special_expiry').value + '세' : '갱신 특약 만기일'}}</span>
+                <div class="custom-dropdown">
+                  <ul class="dropdown-list">
+                    <li class="dropdown-item" [class.active]="form?.get('renewal_special_expiry').value === 80"
+                        (click)="onSelect(80, form?.get('renewal_special_expiry'))"
+                    >80세</li>
+                    <li class="dropdown-item" [class.active]="form?.get('renewal_special_expiry').value === 100"
+                        (click)="onSelect(100, form?.get('renewal_special_expiry'))"
+                    >100세</li>
+                  </ul>
+                </div>
+              </div>
+<!--              <div class="input-wrap">-->
+<!--                <input type="text" class="form-input right" placeholder="0000.00.00" [imask]="{mask: '0000.00.00'}"-->
+<!--                       [formControlName]="'renewal_special_expiry_date'">-->
+<!--                <div-->
+<!--                    class="error-message">{{form?.get('renewal_special_expiry_date').errors?.message || '입력해 주세요.'}}</div>-->
+<!--              </div>-->
+            </div>
+          </ng-template>
+          <ng-template [ngIf]="form?.get('insurance_type').value === 2">
+            <div class="form-input-wrap" [class.error]="form?.get('expiry_date').invalid && isShowValidLine">
+              <div class="form-label required">만기일</div>
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0000.00.00" [imask]="{mask: '0000.00.00'}"
+                       [formControlName]="'expiry_date'">
+                <div class="error-message">{{form?.get('expiry_date').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+            </div>
+          </ng-template>
+          <div class="form-input-wrap with-select"
+               [class.error]="form?.get('cancellation_refund').invalid && isShowValidLine">
+            <div class="form-label">해약 환급금</div>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0" [formControlName]="'cancellation_refund'"
+                     [readOnly]="true" [imask]="thousandsMask" [unmask]="'typed'">
+              <div class="error-message">{{form?.get('cancellation_refund').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+            <div class="form-dropdown-wrap right" tabindex="0">
+              <span class="custom-select">{{form?.get('percent_cancellation_refund').value + '%'}}</span>
+              <div class="custom-dropdown">
+                <ul class="dropdown-list">
+                  <ng-template ngFor [ngForOf]="percentList" let-percentItem>
+                    <li class="dropdown-item" [class.active]="form?.get('percent_cancellation_refund').value === true"
+                        (click)="onSelect(percentItem, form?.get('percent_cancellation_refund'))">{{percentItem}}%
+                    </li>
+                  </ng-template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-input-wrap percent"
+               [class.error]="form?.get('renewal_growth_rate').invalid && isShowValidLine">
+            <div class="form-label">갱신 증가율</div>
+            <div class="input-wrap">
+              <input type="text" class="form-input" placeholder="0" [formControlName]="'renewal_growth_rate'">
+              <div class="error-message">{{form?.get('renewal_growth_rate').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-list-container">
+    <div class="header">
+      <div class="title">
+        담보별 세부사항
+        <div class="tooltip-wrap">
+          <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+          <div class="tooltip-box">
+            <div class="tooltip top" style="width: 300px;">담보별 보험료는 모르면 입력하지 않아도 돼요.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template [ngIf]="caseForm">
+      <ng-template ngFor [ngForOf]="commonInsurance?.categories" let-caseCategoryItem
+                   let-caseCategoryIndex="index">
+        <ng-template
+            [ngIf]="caseCategoryItem?.insurance_type === 0 || form?.get('insurance_type').value === caseCategoryItem.insurance_type">
+          <div class="case-container">
+            <div class="title">{{caseCategoryItem.name}}</div>
+            <div class="case-table">
+              <div class="header">
+                <div class="category">구분</div>
+                <div class="row">
+                  <div>보장 금액</div>
+                  <div>납입 기간</div>
+                  <div>보장 기간</div>
+                  <div>보험료</div>
+                  <div></div>
+                </div>
+              </div>
+              <ng-template ngFor="" [ngForOf]="caseCategoryItem.sub_category_list" let-caseSubCategoryItem
+                           let-caseSubCategoryIndex="index">
+                <ng-template
+                    [ngIf]="caseSubCategoryItem.insurance_type === 0 || form?.get('insurance_type').value === caseSubCategoryItem.insurance_type">
+                  <div class="category-wrap">
+                    <div class="category">
+                      {{caseSubCategoryItem.name}}
+                    </div>
+                    <div class="case-list">
+                      <ng-template ngFor="" [ngForOf]="caseSubCategoryItem.detail_list" let-caseDetailItem
+                                   let-caseDetailIndex="index">
+
+                        <ng-template ngFor="" [ngForOf]="caseForm[caseDetailItem.id]" let-caseFormItem
+                                     let-caseFormIndex="index">
+                          <div class="case-item">
+                            <div class="title">
+                              {{caseDetailItem.name}}{{caseCategoryItem.name === '진단비' ? ' 진단비' : ''}}
+                            </div>
+                            <div class="case-input-wrap">
+                              <div>
+                                <div class="form-input-wrap big-price">
+                                  <input type="text" class="form-input" placeholder="0" [imask]="thousandsMask"
+                                         [unmask]="'typed'"
+                                         [formControl]="caseFormItem.get('assurance_amount')">
+                                </div>
+                              </div>
+                              <div>
+                                <div class="form-input-wrap">
+                                  <input type="number" class="form-input right" placeholder="0"
+                                         [formControl]="caseFormItem.get('payment_period')">
+                                </div>
+                                <div class="form-dropdown-wrap" tabindex="0">
+                                <span
+                                    class="custom-select">{{commonInsurance?.casePaymentPeriodType[caseFormItem.get('payment_period_type').value]}}</span>
+                                  <div class="custom-dropdown">
+                                    <ul class="dropdown-list">
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('payment_period_type').value === 1"
+                                          (click)="onSelect(1, caseFormItem.get('payment_period_type'))">년
+                                      </li>
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('payment_period_type').value === 2"
+                                          (click)="onSelect(2, caseFormItem.get('payment_period_type'))">세
+                                      </li>
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('payment_period_type').value === 3"
+                                          (click)="onSelect(3, caseFormItem.get('payment_period_type'))">년 갱신
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="form-input-wrap">
+                                  <input type="number" class="form-input right" placeholder="0"
+                                         *ngIf="caseFormItem.get('warranty_period_type').value !== 3"
+                                         [attr.disabled]="caseFormItem.get('warranty_period_type').value === 4 ? true : undefined"
+                                         [formControl]="caseFormItem.get('warranty_period')">
+
+                                  <input type="text" class="form-input right" *ngIf="caseFormItem.get('warranty_period_type').value === 3"
+                                         placeholder="0000.00.00"
+                                         [imask]="{mask: '0000.00.00'}"
+                                         [formControl]="caseFormItem.get('warranty_period')">
+                                </div>
+                                <div class="form-dropdown-wrap" tabindex="0">
+                                <span
+                                    class="custom-select">{{commonInsurance?.caseWarrantyPeriodType[caseFormItem.get('warranty_period_type').value]}}</span>
+                                  <div class="custom-dropdown">
+                                    <ul class="dropdown-list">
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('warranty_period_type').value === 1"
+                                          (click)="onSelect(1, caseFormItem.get('warranty_period_type'))">세
+                                      </li>
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('warranty_period_type').value === 2"
+                                          (click)="onSelect(2, caseFormItem.get('warranty_period_type'))">년
+                                      </li>
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('warranty_period_type').value === 3"
+                                          (click)="onSelect(3, caseFormItem.get('warranty_period_type'))">날짜
+                                      </li>
+                                      <li class="dropdown-item"
+                                          [class.active]="caseFormItem.get('warranty_period_type').value === 4"
+                                          *ngIf="form?.get('insurance_type').value === 1"
+                                          (click)="onSelectWarrantyPeriodType(4, caseFormItem.get('warranty_period_type'), caseFormItem.get('warranty_period'))">종신
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="form-input-wrap price">
+                                  <input type="text" class="form-input" placeholder="0"
+                                         [imask]="thousandsMask" [unmask]="'typed'"
+                                         [formControl]="caseFormItem.get('premium')">
+                                </div>
+                              </div>
+                              <div class="btn-wrap">
+                                <button class="btn primary-line" *ngIf="caseForm[caseDetailItem.id]?.length > 1"
+                                        (click)="onDeleteCase(caseDetailItem, caseFormIndex)">제거
+                                </button>
+                                <button class="btn" (click)="onAddCase(caseDetailItem)">추가</button>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </ng-template>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-template>
+
+            </div>
+          </div>
+
+        </ng-template>
+      </ng-template>
+    </ng-template>
+  </section>
+
+  <section class="comment-container" [formGroup]="form">
+    <div class="header">
+      <div class="title">코멘트</div>
+    </div>
+    <div class="content">
+      <div class="form-input-wrap">
+        <input type="text" class="form-input" placeholder="한 줄 요약"
+               [formControlName]="'comment_title'">
+      </div>
+      <div class="form-input-wrap">
+        <textarea name="" id="" autosize [minRows]="1" class="form-input form-textarea" placeholder="코멘트 입력"
+                  [formControlName]="'comment'"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <div class="btn-wrap">
+    <button class="btn" (click)="onGotoAnalysis()">분석 결과 보기</button>
+  </div>
+
+  <app-btn-top></app-btn-top>
+</div>

@@ -1,0 +1,170 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()" [formGroup]="form">
+    <section class="memo-container">
+      <div class="header">
+        <div class="title">메모 입력</div>
+      </div>
+      <div class="form-input-wrap">
+        <textarea name="" id="" class="form-input form-textarea" placeholder="메모 입력"
+                  [formControlName]="'memo'"></textarea>
+      </div>
+    </section>
+    <section class="form-container">
+      <div class="header">
+        <div class="title">인적사항</div>
+      </div>
+
+      <div class="list">
+        <div class="form-input-wrap" [class.error]="form.get('birth_day').invalid && isShowValidLine">
+          <div class="form-label required">생년월일</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="0000.00.00"
+                   [imask]="{mask: '0000.00.00'}" [formControlName]="'birth_day'">
+            <div class="error-message">{{form.get('birth_day').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap">
+          <label class="form-label">통신사</label>
+          <div class="form-dropdown-wrap right" tabindex="0">
+            <span class="custom-select">{{(mobilePhoneCarrier[form.get('mobile_phone_carrier').value] || '통신사')}}</span>
+            <div class="custom-dropdown">
+              <ul class="dropdown-list">
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 1" (click)="onSelect(form?.get('mobile_phone_carrier'), 1)">KT</li>
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 2" (click)="onSelect(form?.get('mobile_phone_carrier'), 2)">SKT</li>
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 3" (click)="onSelect(form?.get('mobile_phone_carrier'), 3)">LGU+</li>
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 4" (click)="onSelect(form?.get('mobile_phone_carrier'), 4)">KT 알뜰폰</li>
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 5" (click)="onSelect(form?.get('mobile_phone_carrier'), 5)">SKT 알뜰폰</li>
+                <li class="dropdown-item" [class.active]="form.get('mobile_phone_carrier').value === 6" (click)="onSelect(form?.get('mobile_phone_carrier'), 6)">LGU+ 알뜰폰</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('mobile_phone_number').invalid && isShowValidLine">
+          <div class="form-label">휴대폰 번호</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="000-0000-0000" [imask]="{mask: '000-0000-0000'}" [formControlName]="'mobile_phone_number'">
+            <div class="error-message">{{form.get('mobile_phone_number').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+
+        <div class="form-input-wrap" [class.error]="form.get('address').invalid && isShowValidLine">
+          <div class="form-label">주소</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="주소 입력" [formControlName]="'address'">
+            <div class="error-message">{{form.get('address').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('job').invalid && isShowValidLine">
+          <div class="form-label">직업</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="직업 입력" [formControlName]="'job'">
+            <div class="error-message">{{form.get('job').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('company').invalid && isShowValidLine">
+          <div class="form-label">직장명</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="직장명 입력" [formControlName]="'company'">
+            <div class="error-message">{{form.get('company').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('business_type').invalid && isShowValidLine">
+          <div class="form-label">업종</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="업종 입력" [formControlName]="'business_type'">
+            <div class="error-message">{{form.get('business_type').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap">
+          <label class="form-label">운전 여부</label>
+          <div class="form-dropdown-wrap right" tabindex="0">
+            <span class="custom-select">{{(form.get('drive_type').value === null ? '운전 여부' : form.get('drive_type').value === 1 ? '자가용' : form.get('drive_type').value === 2 ? '영업용' : '비운전자')}}</span>
+            <div class="custom-dropdown">
+              <ul class="dropdown-list">
+                <li class="dropdown-item" [class.active]="form.get('drive_type').value === 1" (click)="onSelect(form?.get('drive_type'), 1)">자가용</li>
+                <li class="dropdown-item" [class.active]="form.get('drive_type').value === 2" (click)="onSelect(form?.get('drive_type'), 2)">영업용</li>
+                <li class="dropdown-item" [class.active]="form.get('drive_type').value === 3" (click)="onSelect(form?.get('drive_type'), 3)">비운전자</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('email').invalid && isShowValidLine">
+          <div class="form-label">이메일</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="이메일 입력" [formControlName]="'email'">
+            <div class="error-message">{{form.get('email').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap-group">
+          <div class="form-input-wrap" [class.error]="form.get('drink_week').invalid && isShowValidLine">
+            <label class="form-label">음주</label>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0" [formControlName]="'drink_week'">
+              <div class="error-message">{{form.get('drink_week').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+          <div class="form-input-wrap" [class.error]="form.get('drink_bottle').invalid && isShowValidLine">
+            <label class="form-label"><span class="sub-label">(일주일)회</span></label>
+            <div class="right">
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'drink_bottle'">
+                <div class="error-message">{{form.get('drink_bottle').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+              <span class="unit">(소주)병</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap-group">
+          <div class="form-input-wrap">
+            <label class="form-label">흡연</label>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0" [formControlName]="'smoke_daily'">
+              <div class="error-message">{{form.get('smoke_daily').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+          <div class="form-input-wrap">
+            <label class="form-label"><span class="sub-label">(하루)개피</span></label>
+            <div class="right">
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'smoke_years'">
+                <div class="error-message">{{form.get('smoke_years').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+              <span class="unit">(기간)년</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap-group">
+          <div class="form-input-wrap">
+            <label class="form-label">키/몸무게</label>
+            <div class="input-wrap">
+              <input type="text" class="form-input right" placeholder="0" [formControlName]="'height'">
+              <div class="error-message">{{form.get('height').errors?.message || '입력해 주세요.'}}</div>
+            </div>
+          </div>
+          <div class="form-input-wrap">
+            <label class="form-label"><span class="sub-label">cm</span></label>
+            <div class="right">
+              <div class="input-wrap">
+                <input type="text" class="form-input right" placeholder="0" [formControlName]="'weight'">
+                <div class="error-message">{{form.get('weight').errors?.message || '입력해 주세요.'}}</div>
+              </div>
+              <span class="unit">kg</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('baby_due_date').invalid && isShowValidLine">
+          <div class="form-label">출산 예정일</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" [imask]="{mask: '0000.00.00'}" placeholder="0000.00.00" [formControlName]="'baby_due_date'">
+            <div class="error-message">{{form.get('baby_due_date').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn line" (click)="onClose()">닫기</button>
+        <button class="btn" (click)="onSubmit()">적용하기</button>
+      </div>
+    </section>
+
+  </div>
+</div>

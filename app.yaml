@@ -1,0 +1,17 @@
+service: weapon-fe
+runtime: nodejs12
+handlers:
+  - url: /
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
+  - url: /assets/
+    static_dir: dist/assets/
+    secure: always
+  - url: /(.*\.(js|webmanifest|json|ico|txt|css))$
+    static_files: dist/\1
+    upload: dist/.*\.(js|webmanifest|json|ico|txt|css)$
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always

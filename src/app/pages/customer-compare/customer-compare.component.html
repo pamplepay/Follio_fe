@@ -1,0 +1,442 @@
+<div class="page-container fixed-header" [class.is-share]="isShare">
+  <div class="page-header is-customer">
+    <div class="path">
+      <span (click)="onGotoCustomerList()">고객 리스트</span>
+      <div class="btn-icon btn-right"></div>
+      <span (click)="onClickCustomer(compare?.customer?.id)">{{compare?.customer?.name}}님</span>
+      <div class="btn-icon btn-right"></div>
+      제안 포트폴리오
+    </div>
+    <div class="header">
+      <div class="back" (click)="onBack()"></div>
+      <div class="name-wrap">
+        <div class="name">
+          <strong>[{{nowDate}}] {{compare.customer.name}}님 포트폴리오 비교 내역</strong>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn-menu">
+          <div class="menu-list">
+            <div class="menu-item" (click)="onCopyUrl()">
+              링크복사
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="sub-title">비용 분석</div>
+  <div class="analysis-container">
+    <div class="compare-container">
+      <div class="compare-wrap">
+        <div class="header">
+          <div class="title">
+            월 보험료
+          </div>
+        </div>
+        <div class="calculator-container">
+          <div class="bar-graph">
+            <div class="bar-wrap">
+              <div class="price">{{compare.monthly_existing_sum_premium | number}}</div>
+              <div class="bar" [style.height]="(compare.monthly_existing_sum_premium > compare.monthly_suggest_sum_premium ? 150 : 150 * (compare.monthly_existing_sum_premium / compare.monthly_suggest_sum_premium) )+ 'px'"></div>
+              <div class="label">기존</div>
+            </div>
+            <div class="bar-wrap active">
+              <div class="price">{{compare.monthly_suggest_sum_premium | number}}</div>
+              <div class="bar" [style.height]="(compare.monthly_suggest_sum_premium >= compare.monthly_existing_sum_premium ? 150 : 150 * (compare.monthly_suggest_sum_premium / compare.monthly_existing_sum_premium) ) + 'px'"></div>
+              <div class="label">제안</div>
+            </div>
+          </div>
+          <div class="total-wrap">
+            <div class="label">차액</div>
+            <div class="total-price">
+              <strong>
+                {{compare.monthly_calculate_premium < 0 ? '+ ' : compare.monthly_calculate_premium > 0 ? '- ' : ''}}
+                {{compare.monthly_calculate_premium  | abs | number}}
+              </strong> 원</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="header">
+          <div class="title">
+            총 보험료
+          </div>
+        </div>
+        <div class="calculator-container">
+          <div class="bar-graph">
+            <div class="bar-wrap">
+              <div class="price">{{compare.total_existing_sum_premium | number}}</div>
+              <div class="bar" [style.height]="(compare.total_existing_sum_premium > compare.total_suggest_sum_premium ? 150 : 150 * (compare.total_existing_sum_premium / compare.total_suggest_sum_premium) ) + 'px'"></div>
+              <div class="label">기존</div>
+            </div>
+            <div class="bar-wrap active">
+              <div class="price">{{compare.total_suggest_sum_premium | number}}</div>
+              <div class="bar" [style.height]="(compare.total_suggest_sum_premium >= compare.total_existing_sum_premium ? 150 : 150 * (compare.total_suggest_sum_premium / compare.total_existing_sum_premium) ) + 'px'"></div>
+              <div class="label">제안</div>
+            </div>
+          </div>
+          <div class="total-wrap">
+            <div class="label">차액</div>
+            <div class="total-price"><strong>
+              {{compare.total_calculate_premium < 0 ? '+ ' : compare.total_calculate_premium > 0 ? '- ' : ''}}
+              {{compare.total_calculate_premium | abs | number}}
+            </strong> 원</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="header">
+          <div class="title">
+            총 보험료 차액 계산
+          </div>
+        </div>
+        <div class="calculator-container">
+          <div class="calculator-wrap">
+            <div class="calculator-item">
+              <div class="label">기존 낼 돈</div>
+              <div class="price"><strong>{{compare.existing_pay_insurance_premium | number}}</strong> 원</div>
+            </div>
+            <div class="circle">-</div>
+            <div class="calculator-item">
+              <div class="label">제안 낼 돈</div>
+              <div class="price"><strong>{{compare.suggest_pay_insurance_premium | number}}</strong> 원</div>
+            </div>
+            <div class="circle">+</div>
+            <div class="calculator-item">
+              <div class="label">기존 해약 환급금 </div>
+              <div class="price"><strong>{{compare.total_cancellation_refund | number}}</strong> 원</div>
+            </div>
+          </div>
+          <div class="total-wrap">
+            <div class="label">차액</div>
+            <div class="total-price">
+              <strong>
+                {{compare.total_calculate < 0 ? '+ ' : compare.total_calculate > 0 ? '- ' : ''}}
+                {{compare.total_calculate | abs | number}}
+              </strong> 원</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">※ 상품의 갱신률, 해약환급률 등에 따라 금액이 실제와 다를 수 있습니다. </div>
+  </div>
+
+
+  <section class="assets-change-trend-container">
+    <div class="header">
+      <div class="title">자산 변동 추이</div>
+    </div>
+    <div class="chart-container">
+      <div class="header">
+        수익률
+        <span class="minus" (click)="onMinusYieldCount()">-</span>
+        <span class="yield-count">{{yieldCount}}</span>
+        <span class="plus" (click)="onPlushYieldCount()">+</span>
+      </div>
+      <div class="chart">
+        <app-line-chart *ngIf="yieldChartData?.length > 0" [width]="900" [height]="250" [data]="yieldChartData"></app-line-chart>
+      </div>
+    </div>
+  </section>
+
+  <section class="warranty-container">
+    <div class="header">
+      <div class="title">보장 분석</div>
+    </div>
+
+    <div class="chart-container">
+      <div class="left">
+        <div class="header">
+          <div class="title">
+            사망 · 후유장애 · 진단비 · 운전자 · 기타
+            <div class="tooltip-wrap">
+              <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+              <div class="tooltip-box">
+                <div class="tooltip chart">
+                  <div><strong>기준값 (단위 : 만원)</strong></div>
+                  <div>- 상해사망(재해사망) : 15,000</div>
+                  <div>- 질병사망 : 15,000</div>
+                  <div>- 상해후유장애(재해상해) : 15,000</div>
+                  <div>- 암 : 4,000</div>
+                  <div>- 뇌 : 5,000</div>
+                  <div>- 심장 : 3,000</div>
+                  <div>- 변호사 선임비 : 2,000</div>
+                  <div>- 대물 벌금 : 500</div>
+                  <div>- 대인 벌금 : 2,000</div>
+                  <div>- 형사 합의 실손비 : 10,000</div>
+                  <div>- 배상책임 : 10,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart">
+            <app-radar-chart [name]="compare.chart_one.name" [data1]="compare.chart_one.existing_percent" [data2]="compare.chart_one.suggest_percent" [width]="400"
+                             [height]="400"></app-radar-chart>
+          </div>
+          <div class="label-wrap">
+            <div class="label a">기존</div>
+            <div class="label b">제안</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="header">
+          <div class="title">
+            실손 의료비
+            <div class="tooltip-wrap">
+              <img class="ico-tooltip" src="/assets/images/ico-info.svg" alt="">
+              <div class="tooltip-box">
+                <div class="tooltip chart">
+                  <div><strong>기준값 (단위 : 만원)</strong></div>
+                  <div>- 상해 입원 의료비 : 5,000</div>
+                  <div>- 상해 통원 의료비 : 30</div>
+                  <div>- 질병 입원 의료비 : 5,000</div>
+                  <div>- 질병 통원 의료비 : 30</div>
+                  <div>- 비급여 도수치료 등 : 350</div>
+                  <div>- 비급여 MRI/MRA : 300</div>
+                  <div>- 비급여 주사료 : 250</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart">
+            <app-radar-chart [name]="compare.chart_two.name" [data1]="compare.chart_two.existing_percent" [data2]="compare.chart_two.suggest_percent" [width]="400"
+                             [height]="400"></app-radar-chart>
+          </div>
+          <div class="label-wrap">
+            <div class="label a">기존</div>
+            <div class="label b">제안</div>
+          </div>
+        </div>
+       </div>
+    </div>
+  </section>
+
+  <section class="case-list-container">
+    <ng-template ngFor [ngForOf]="commonInsurance.analysis_categories" let-categoryItem>
+      <ng-template [ngIf]="compare.insurance_type_list?.indexOf(categoryItem.insurance_type) !== -1">
+        <div class="case-container">
+          <div class="title">
+            {{categoryItem.name}}
+          </div>
+          <div class="case-table">
+            <ng-template ngFor [ngForOf]="categoryItem.sub_category_list" let-subCategoryItem
+                         let-subCategoryIndex="index">
+              <div class="category-wrap">
+                <div class="category">
+                  {{subCategoryItem.name}}
+                </div>
+                <div class="case-list">
+                  <ng-template ngFor [ngForOf]="subCategoryItem.detail_list" let-caseItem let-caseIndex="index">
+                    <ng-template [ngIf]="compare.insurance_type_list?.indexOf(subCategoryItem.insurance_type) !== -1">
+                      <div class="case-item">
+                        <div class="before">
+                          <div class="title">
+                            [기존] {{caseItem.name}}{{categoryItem.name === '진단비' ? ' 진단비' : ''}}
+                            <div class="label-wrap">
+                              <div class="label a">기존</div>
+                              <div class="label b">제안</div>
+                            </div>
+                          </div>
+
+                          <div class="price-container">
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">합계</div>
+                                <div class="price"><strong>{{caseItem.existing.total_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container">
+                                  <div class="label-wrap">
+                                    <div class="label">0세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">20세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">40세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">60세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">80세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">100세</div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">갱신</div>
+                                <div class="price"><strong>{{caseItem.existing.total_renewal_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container" *ngIf="caseItem.existing.total_renewal_premium > 0">
+                                  <ng-template ngFor [ngForOf]="caseItem.existing.renewal_old_list" let-oldItem let-oldIndex="index">
+                                    <div class="price">{{oldItem | number}}</div>
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">비갱신</div>
+                                <div class="price"><strong>{{caseItem.existing.total_non_renewal_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container" *ngIf="caseItem.existing.total_non_renewal_premium > 0">
+                                  <ng-template ngFor [ngForOf]="caseItem.existing.non_renewal_old_list" let-oldItem
+                                               let-oldIndex="index">
+                                    <div class="price">{{oldItem | number}}</div>
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="suggest">
+                          <div class="title">
+                            [제안] {{caseItem.name}}{{categoryItem.name === '진단비' ? ' 진단비' : ''}}
+                          </div>
+
+                          <div class="price-container">
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">합계</div>
+                                <div class="price"><strong>{{caseItem.suggest.total_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container">
+                                  <div class="label-wrap">
+                                    <div class="label">0세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">20세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">40세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">60세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">80세</div>
+                                  </div>
+                                  <div class="label-wrap">
+                                    <div class="label">100세</div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">갱신</div>
+                                <div class="price"><strong>{{caseItem.suggest.total_renewal_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container" *ngIf="caseItem.suggest.total_renewal_premium > 0">
+                                  <ng-template ngFor [ngForOf]="caseItem.suggest.renewal_old_list" let-oldItem let-oldIndex="index">
+                                    <div class="price">{{oldItem | number}}</div>
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="price-graph">
+                              <div class="left">
+                                <div class="label">비갱신</div>
+                                <div class="price"><strong>{{caseItem.suggest.total_non_renewal_premium | number}}</strong> 만원</div>
+                              </div>
+                              <div class="right">
+                                <div class="price-container" *ngIf="caseItem.suggest.total_non_renewal_premium > 0">
+                                  <ng-template ngFor [ngForOf]="caseItem.suggest.non_renewal_old_list" let-oldItem
+                                               let-oldIndex="index">
+                                    <div class="price">{{oldItem | number}}</div>
+                                  </ng-template>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ng-template>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </section>
+
+
+  <section class="portfolio-comment-container">
+    <div class="header">
+      <div class="title">코멘트</div>
+    </div>
+    <div class="portfolio-container">
+      <div class="before">
+        <div class="title">기존 포트폴리오</div>
+        <div class="info-wrap">
+          <div class="left">
+            <div class="label">전체 계약 건수</div>
+            <div class="value"><strong>{{compare.existing.insurance_list.length}}</strong> 건</div>
+          </div>
+          <div class="div"></div>
+          <div class="right">
+            <div class="label">월 보험료 합계</div>
+            <div class="value"><strong>{{compare.existing.monthly_premiums | number}}</strong> 원</div>
+          </div>
+        </div>
+        <ng-template ngFor="" [ngForOf]="compare.existing.insurance_list"  let-insuranceIndex="index" let-insuranceItem="">
+          <app-insurance-item [insuranceItem]="insuranceItem" (click)="onGotoAnalysis(insuranceItem)" [isShowComment]="true"></app-insurance-item>
+        </ng-template>
+      </div>
+
+      <div class="suggest">
+        <div class="title">제안 포트폴리오</div>
+        <div class="info-wrap">
+          <div class="left">
+            <div class="label">전체 계약 건수</div>
+            <div class="value"><strong>{{compare.suggest.insurance_list.length}}</strong> 건</div>
+          </div>
+          <div class="div"></div>
+          <div class="right">
+            <div class="label">월 보험료 합계</div>
+            <div class="value"><strong>{{compare.suggest.monthly_premiums | number}}</strong> 원</div>
+          </div>
+        </div>
+        <ng-template ngFor="" [ngForOf]="compare.suggest.insurance_list"  let-insuranceIndex="index" let-insuranceItem="">
+          <app-insurance-item [insuranceItem]="insuranceItem" (click)="onGotoAnalysis(insuranceItem)" [isShowComment]="true"></app-insurance-item>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+
+  <!--  <div class="chart-test">-->
+  <!--    <app-bar-chart></app-bar-chart>-->
+  <!--  </div>-->
+  <!--  <div class="chart-test">-->
+  <!--    <app-line-chart></app-line-chart>-->
+  <!--  </div>-->
+
+  <!--  <div class="chart-test">-->
+  <!--    <app-doughnut-chart></app-doughnut-chart>-->
+  <!--  </div>-->
+  <app-btn-top></app-btn-top>
+</div>

@@ -1,0 +1,48 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="header">
+      <div class="title">
+        자주 쓰는 설계
+      </div>
+
+      <div class="btn-wrap">
+        <button class="btn" (click)="onGotoTemplateCreate()">
+          <img src="/assets/images/ico-add.svg" alt="">
+          설계 추가
+        </button>
+      </div>
+    </div>
+
+    <div class="search-container">
+      <div class="form-input-wrap search">
+        <input type="text" class="form-input" placeholder="설계 이름" [formControl]="searchControl">
+      </div>
+    </div>
+  </div>
+
+  <section class="insurance-template-container">
+    <div class="list">
+      <ng-template ngFor="" [ngForOf]="insuranceTemplateList" let-insuranceTemplateItem let-insuranceTemplateIndex="index">
+        <app-insurance-template-item [insuranceTemplateItem]="insuranceTemplateItem"></app-insurance-template-item>
+      </ng-template>
+    </div>
+
+    <div class="pagination" *ngIf="insuranceTemplateList?.length > 0">
+      <span class="primary">{{indexPage}}</span>of {{totalPageCount}}
+
+      <button type="button" class="btn-icon btn-prev" [attr.disabled]="indexPage === 1 ? true : undefined"
+              (click)="onPrevPage()">prev
+      </button>
+      <button type="button" class="btn-icon btn-next"
+              [attr.disabled]="indexPage === totalPageCount ? true : undefined" (click)="onNextPage()">next
+      </button>
+    </div>
+
+
+    <div class="nothing" *ngIf="insuranceTemplateList?.length === 0">
+      <div class="icon"></div>
+      <div class="title">저장된 설계가 없어요.</div>
+      <div class="sub-title">설계를 추가해 주세요.</div>
+    </div>
+  </section>
+</div>

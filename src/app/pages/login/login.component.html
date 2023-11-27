@@ -1,0 +1,72 @@
+<div class="bg"></div>
+<div class="bg-image"></div>
+<div class="page-container login-page">
+  <div class="box-container" *ngIf="!isLogin">
+    <div class="logo"></div>
+    <div class="title">만나서 반가워요</div>
+    <div class="sub-title">
+      <p>다시 돌아오신 것을 환영해요.</p>
+      <p>폴리오에 로그인해 주세요.</p>
+    </div>
+
+    <div class="btn-wrap kakao">
+      <button class="btn kakao-login" (click)="onKakaoLogin()">
+        <span class="icon-kakao"></span>
+        <span>카카오 로그인</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="box-container first" *ngIf="isLogin && isFirstVisit">
+    <div class="logo"></div>
+    <div class="title">처음이시네요</div>
+    <div class="sub-title">
+      추가 정보를 입력해 주세요.
+    </div>
+
+    <form [formGroup]="userInfoForm" class="form-group">
+      <div class="form-input-wrap"
+           [class.error]="isShowValidLine && !userInfoForm?.get('name')?.valid">
+        <div class="form-label">이름</div>
+        <input type="text" placeholder="이름" class="form-input"
+               [class.error]="isShowValidLine && !userInfoForm?.get('name')?.valid"
+               (blur)="onBlur($event, userInfoForm?.get('name'))"
+               [tabIndex]="0" [formControlName]="'name'">
+        <button class="btn-icon btn-delete" (click)="userInfoForm?.get('name')?.setValue('')">삭제</button>
+      </div>
+      <div class="form-input-wrap"
+           [class.error]="isShowValidLine && !userInfoForm?.get('phone_number')?.valid">
+        <div class="form-label">전화번호</div>
+        <input type="text" placeholder="전화번호" class="form-input"
+               [class.error]="isShowValidLine && !userInfoForm?.get('phone_number')?.valid"
+               (blur)="onBlur($event, userInfoForm?.get('phone_number'))"
+               [tabIndex]="0" [formControlName]="'phone_number'">
+        <button class="btn-icon btn-delete" (click)="userInfoForm?.get('phone_number')?.setValue('')">삭제</button>
+      </div>
+      <div class="form-input-wrap" [class.error]="isShowValidLine && !userInfoForm?.get('email')?.valid">
+        <div class="form-label">이메일</div>
+        <input type="text" placeholder="이메일" class="form-input"
+               [class.error]="isShowValidLine && !userInfoForm?.get('email')?.valid"
+               (blur)="onBlur($event, userInfoForm?.get('email'))"
+               [tabIndex]="0" [formControlName]="'email'">
+        <button class="btn-icon btn-delete" (click)="userInfoForm?.get('email')?.setValue('')">삭제</button>
+      </div>
+      <div class="form-input-wrap" [class.error]="isShowValidLine && !userInfoForm?.get('company')?.valid">
+        <div class="form-label">소속</div>
+        <input type="text" placeholder="소속" class="form-input"
+               [class.error]="isShowValidLine && !userInfoForm?.get('company')?.valid"
+               (blur)="onBlur($event, userInfoForm?.get('company'))"
+               [tabIndex]="0" [formControlName]="'company'">
+        <button class="btn-icon btn-delete" (click)="userInfoForm?.get('company')?.setValue('')">삭제</button>
+      </div>
+    </form>
+    <div class="btn-wrap">
+      <button class="btn" (click)="onUpdateUserInfo()">
+        <span>완료</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+

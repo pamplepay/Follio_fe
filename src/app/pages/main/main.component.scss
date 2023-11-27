@@ -1,0 +1,209 @@
+@import "../../../assets/scss/utils/variables";
+
+.search-container {
+  margin-top: 54px;
+}
+
+
+.customer-container {
+  > .list {
+    display: grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 18px;
+    //grid-template-columns: 33% 33% 33%;
+    grid-template-columns: calc(25% - 12px) calc(25% - 12px) calc(25% - 12px) calc(25% - 12px); /* 명시적 2개 행 정의 */
+    grid-auto-rows: auto;
+    min-height: 213px;
+
+    .customer-wrap {
+      cursor: pointer;
+      background-color: $white;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      &:hover {
+        box-shadow: 0px 10px 20px -7px rgba(147, 182, 193, 0.6), 0px 4px 31px rgba(147, 182, 193, 0.2);
+      }
+      height: 89px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      position: relative;
+
+      &:before {
+        position: absolute;
+        content: "";
+        top: 36px;
+        right: 14px;
+        background-image: url("/assets/images/el-arrow-right-gray.svg");
+        width: 24px;
+        height: 24px;
+      }
+
+      .customer {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 167%;
+        color: $black-70;
+
+        .name {
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 167%;
+          color: $black;
+        }
+      }
+
+      .contract {
+        font-size: 16px;
+        color: $black-60;
+      }
+    }
+
+    .add-button {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 167%;
+      color: $white;
+      height: 89px;
+      background: $primary;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      border-radius: 10px;
+
+      > .icon {
+        width: 24px;
+        height: 24px;
+        background-image: url("/assets/images/ico-add.svg");
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.insurance-container {
+  > .list {
+    display: grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 12px;
+    //grid-template-columns: 33% 33% 33%;
+    grid-template-columns: calc(50% - 8px) calc(50% - 8px); /* 명시적 2개 행 정의 */
+    grid-auto-rows: auto;
+
+    > .insurance-wrap {
+      position: relative;
+      cursor: pointer;
+      background-color: $white;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      &:hover {
+        box-shadow: 0px 10px 20px -7px rgba(147, 182, 193, 0.6), 0px 4px 31px rgba(147, 182, 193, 0.2);
+      }
+      border-radius: 10px;
+      padding: 35.5px 30px;
+      display: flex;
+
+      > .image-wrap {
+        margin-right: 28px;
+        display: flex;
+        align-items: center;
+
+        > .image {
+          width: 48px;
+          height: 48px;
+          background-color: $secondary;
+          border-radius: 30px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+
+        }
+      }
+
+      > .info-wrap {
+        font-weight: bold;
+        font-size: 18px;
+
+        > .title {
+          position: relative;
+          display: inline-block;
+          padding-right: 24px;
+          font-size: 15px;
+
+          > .company {
+            color: $secondary;
+          }
+
+          &:after {
+            position: absolute;
+            content: "";
+            top: -2px;
+            right: -4px;
+            background-image: url("/assets/images/el-arrow-right-gray.svg");
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        > .customer {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 13px;
+          line-height: 167%;
+          width: 285px;
+
+          color: $black-80;
+
+          margin-top: 12px;
+          display: flex;
+          align-items: center;
+
+          .label {
+            color: $black-40;
+            margin-right: 12px;
+          }
+
+          > .div {
+            width: 1px;
+            height: 16px;
+            background: rgba(20, 50, 67, 0.2);
+            margin: 0 28px;
+          }
+
+          //.left, .right {
+          //  flex:1;
+          //}
+        }
+
+        > .price {
+          margin-top: 8px;
+          color: $black-50;
+          font-size: 18px;
+
+          span {
+            font-weight: bold;
+            line-height: 167%;
+            color: $black;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.insurance-template-container {
+  margin-bottom: 30px;
+
+  > .list {
+    display: grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    //grid-template-columns: 33% 33% 33%;
+    grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px); /* 명시적 2개 행 정의 */
+    grid-auto-rows: auto;
+
+    app-insurance-template-item {
+      display: block;
+    }
+  }
+}

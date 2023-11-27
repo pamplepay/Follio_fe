@@ -1,0 +1,138 @@
+@import "../../../assets/scss/utils/variables";
+
+section {
+  width: 100%;
+  margin-top: 80px;
+
+  > .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+
+    > .title {
+      font-weight: bold;
+      font-size: 21px;
+      line-height: 167%;
+    }
+
+    .btn-edit {
+      cursor: pointer;
+      padding: 5px 25px 4px;
+
+      border: 1px solid #20D9E5;
+      box-sizing: border-box;
+      color: #20D9E5;
+
+      box-shadow: 0px 4px 5px rgba(147, 182, 193, 0.14);
+      border-radius: 10px;
+    }
+
+    > .more {
+      position: relative;
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 167%;
+      padding-right: 29px;
+
+      &:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        background-image: url("/assets/images/el-arrow-right-gray.svg");
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  > .content {
+    margin-top: 16px;
+    background: #FFFFFF;
+    /* wh_bg_shwv */
+
+    box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+    border-radius: 10px;
+
+    padding: 30px;
+
+    > .sub-title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 167%;
+      color: $black;
+      margin-bottom: 19px;
+    }
+
+    > .item {
+      font-weight: 500;
+      color: $black-90;
+      > .label {
+        color: $black-60;
+      }
+      > .value {
+        display: flex;
+        > .add-recommend-user {
+          cursor: pointer;
+        }
+        > .copy {
+          color: #20D9E5;
+          margin-right: 8px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  > .list {
+    margin-top: 24px;
+  }
+}
+
+.user-info-container, .membership-container  {
+  width: 634px;
+}
+
+.etc-container {
+  > .list {
+    display: grid;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    //grid-template-columns: 33% 33% 33%;
+    grid-template-columns: calc(33% - 10.5px) calc(33% - 10.5px) calc(33% - 10.5px); /* 명시적 2개 행 정의 */
+    //grid-template-columns: calc(50% - 8px) calc(50% - 8px); /* 명시적 2개 행 정의 */
+    grid-auto-rows: auto;
+    .btn-item {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: $white;
+      padding: 22px 30px;
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      border-radius: 10px;
+
+      font-size: 16px;
+      line-height: 167%;
+      color: $black;
+
+      &:before {
+        position: absolute;
+        content: "";
+        right: 24px;
+        background-image: url("/assets/images/el-arrow-right-gray.svg");
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

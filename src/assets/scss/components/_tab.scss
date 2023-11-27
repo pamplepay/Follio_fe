@@ -1,0 +1,86 @@
+.tab-area {
+  margin-bottom: 24px;
+  position: relative;
+
+  &.is-scroll {
+    margin: 0 -16px 24px;
+    height: 40px;
+    overflow: hidden;
+    @include pc-style {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+
+    .tab-list {
+      padding-bottom: 30px;
+      overflow: auto;
+      margin: 0 36px 0 16px;
+      @include pc-style {
+        overflow: hidden;
+        margin: 0;
+      }
+    }
+
+    .tab-item {
+      width: 72px;
+      flex: auto;
+      flex-shrink: 0;
+
+      &:first-child {
+        //margin-left: 16px;
+      }
+
+      &:last-child {
+        //margin-right: 16px;
+      }
+
+      @include pc-style {
+        flex: 1;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    background-color: white;
+    background-image: url('/assets/images/ico-arrow-right.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.tab-list {
+  position: relative;
+  display: flex;
+  z-index: 1;
+}
+
+.tab-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 40px;
+  border-bottom: 1px solid $black-5;
+  font-size: 14px;
+  color: $black-60;
+  text-align: center;
+  cursor: pointer;
+
+  &.is-active {
+    border-color: $primary;
+    color: $primary;
+  }
+}

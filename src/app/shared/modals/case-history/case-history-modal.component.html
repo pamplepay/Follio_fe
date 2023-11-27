@@ -1,0 +1,122 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <section class="history-container">
+      <div class="header">
+        <div class="title">병력 리스트</div>
+        <div class="add-case" (click)="onAddCase()">
+          새 병력 추가
+          <img src="/assets/images/ico-add-primary.svg" alt="">
+        </div>
+      </div>
+      <div class="list">
+        <ng-template ngFor="" [ngForOf]="customerMedicalHistoryList" let-customerMedicalHistoryItem let-customerMedicalHistoryIndex="index">
+          <div class="item">
+            <div class="name">{{customerMedicalHistoryItem.diagnostic_name}}</div>
+            <div class="more" (click)="onClickMedicalHistory(customerMedicalHistoryItem)">자세히 보기</div>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+
+    <section class="form-container" [formGroup]="form">
+      <div class="header">
+        <div class="title">병력 입력</div>
+        <div class="type">
+          <div class="form-radio-group-wrap" [class.error]="form.get('is_inpatient').invalid && isShowValidLine">
+            <label class="form-radio-wrap" (click)="onSelect(form.get('is_inpatient'), false)">
+              <input type="radio"
+                     name="pin"
+                     value="not-pin"
+                     class="form-radio" [checked]="form.get('is_inpatient').value === false">
+              <span class="custom-radio"></span>
+              <span class="custom-label-txt">입원</span>
+            </label>
+            <label class="form-radio-wrap" (click)="onSelect(form.get('is_inpatient'), true)">
+              <input type="radio"
+                     name="pin"
+                     value="pin"
+                     class="form-radio" [checked]="form.get('is_inpatient').value === true">
+              <span class="custom-radio"></span>
+              <span class="custom-label-txt">통원</span>
+            </label>
+            <div class="error-message">선택해 주세요</div>
+          </div>
+          <button class="btn-menu left bottom">
+            <div class="menu-list">
+              <div class="menu-item" (click)="onDeleteMedicalHistory()">
+                삭제하기
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="list" #formList>
+        <div class="form-input-wrap" [class.error]="form.get('diagnostic_name').invalid && isShowValidLine">
+          <div class="form-label required">진단명</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="진단명 또는 진단코드 입력" [formControlName]="'diagnostic_name'">
+            <div class="error-message">{{form.get('diagnostic_name').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('treatment_content').invalid && isShowValidLine">
+          <div class="form-label required">치료 내용</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="예) 3일 입원, 정밀 검사 및 투약, 왼쪽 무릎" [formControlName]="'treatment_content'">
+            <div class="error-message">{{form.get('treatment_content').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('treatment_start_date').invalid && isShowValidLine">
+          <div class="form-label">치료 시작일</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="0000.00.00" [imask]="{mask: '0000.00.00'}" [formControlName]="'treatment_start_date'">
+            <div class="error-message">{{form.get('treatment_start_date').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('treatment_end_date').invalid && isShowValidLine">
+          <div class="form-label">치료 종료일</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="0000.00.00" [imask]="{mask: '0000.00.00'}" [formControlName]="'treatment_end_date'">
+            <div class="error-message">{{form.get('treatment_end_date').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap" [class.error]="form.get('hospital_name').invalid && isShowValidLine">
+          <div class="form-label">병원명</div>
+          <div class="input-wrap">
+            <input type="text" class="form-input right" placeholder="병원명 입력" [formControlName]="'hospital_name'">
+            <div class="error-message">{{form.get('hospital_name').errors?.message || '입력해 주세요.'}}</div>
+          </div>
+        </div>
+        <div class="form-input-wrap">
+          <label class="form-label">완치 여부</label>
+          <div class="form-dropdown-wrap right" tabindex="0" (focus)="onFocusBottom(formList)">
+            <span class="custom-select">{{form?.get('is_cure').value === null ? '완치 여부' : form?.get('is_cure').value === true ? '예' : '아니요' }}</span>
+            <div class="custom-dropdown">
+              <ul class="dropdown-list">
+                <li class="dropdown-item" [class.active]="form?.get('is_cure').value === true" (click)="onSelect(form?.get('is_cure'), true)">예</li>
+                <li class="dropdown-item" [class.active]="form?.get('is_cure').value === false" (click)="onSelect(form?.get('is_cure'), false)">아니요</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-input-wrap">
+          <label class="form-label">재발 여부</label>
+          <div class="form-dropdown-wrap right" tabindex="0" (focus)="onFocusBottom(formList)">
+            <span class="custom-select">{{form?.get('is_recurrence').value === null ? '재발 여부' : form?.get('is_recurrence').value === true ? '있음' : '없음' }}</span>
+            <div class="custom-dropdown">
+              <ul class="dropdown-list">
+                <li class="dropdown-item" [class.active]="form?.get('is_recurrence').value === false" (click)="onSelect(form?.get('is_recurrence'), false)">없음</li>
+                <li class="dropdown-item" [class.active]="form?.get('is_recurrence').value === true" (click)="onSelect(form?.get('is_recurrence'), true)">있음</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button class="btn line" (click)="onClose()">닫기</button>
+        <button class="btn" (click)="onSubmit()">적용하기</button>
+      </div>
+
+    </section>
+  </div>
+</div>

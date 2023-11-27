@@ -1,0 +1,300 @@
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(245.48deg, #E3F3F8 1.15%, rgba(255, 255, 255, 0) 96.73%);
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  transform: rotate(-180deg);
+  z-index: 1;
+}
+
+.bg-image {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-image: url("/assets/images/el-bg.png");
+  background-size: initial;
+  background-position: 50% 15%;
+  z-index: 2;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 174px);
+  max-width: $pc-width;
+  padding: 80px 20px 100px;
+  color: $black;
+
+  &.fixed-header {
+    .page-header {
+      margin-top: 40px;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 80px;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      padding: 20px;
+      height: 90px;
+      background-color: #F4F6F8;
+      z-index: 10;
+
+      &.is-customer {
+        height: 110px;
+      }
+
+      &.is-share {
+        top: 0;
+      }
+    }
+  }
+
+  &.is-share {
+    padding-top: 0;
+  }
+
+  .page-header {
+    margin-top: 60px;
+    width: 100%;
+
+    > .path {
+      display: flex;
+      align-items: center;
+      color: $black-60;
+      font-size: 14px;
+      line-height: 167%;
+
+      .btn-right {
+        cursor: unset;
+        background-image: url("/assets/images/ico-arrow-right-gray-small.svg");
+      }
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    > .header {
+      margin-bottom: 32px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .back {
+        position: absolute;
+        left: -36px;
+        background-image: url("/assets/images/ico-back.svg");
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+
+      .title {
+        flex: 1;
+        font-weight: bold;
+        font-size: 27px;
+        line-height: 167%;
+      }
+
+      .name-wrap {
+        flex: 1;
+        display: flex;
+        align-items: baseline;
+        font-weight: bold;
+        font-size: 27px;
+        line-height: 167%;
+        margin-right: 16px;
+
+        &.with-header {
+          margin-top: 8px;
+        }
+
+        &.with-image {
+          align-items: center;
+          > .image-wrap {
+            margin-right: 16px;
+            > .image {
+              width: 48px;
+              height: 48px;
+              background-color: $secondary;
+              border-radius: 30px;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+            }
+          }
+        }
+
+        > .name {
+          color: $black-60;
+
+          strong {
+            color: $black;
+            margin-right: 8px;
+          }
+        }
+      }
+
+      .btn-wrap {
+        width: unset;
+        .btn {
+          width: 155px;
+        }
+      }
+    }
+  }
+
+  section {
+    width: 100%;
+    margin-top: 80px;
+
+    > .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+
+      > .title {
+        position: relative;
+        font-weight: bold;
+        font-size: 21px;
+        line-height: 167%;
+        display: flex;
+        align-items: center;
+      }
+
+      > .more {
+        position: relative;
+        cursor: pointer;
+        font-size: 13px;
+        line-height: 167%;
+        padding-right: 29px;
+
+        &:before {
+          position: absolute;
+          content: "";
+          top: 0;
+          right: 0;
+          background-image: url("/assets/images/el-arrow-right-gray.svg");
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      > .edit {
+        cursor: pointer;
+      }
+    }
+
+    > .list {
+      margin-top: 24px;
+    }
+
+    > .content {
+      margin-top: 24px;
+      background: $white;
+      padding: 27px 30px 48px;
+
+      box-shadow: 0px 4px 15px -7px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      border-radius: 10px;
+    }
+  }
+
+    .nothing {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 0 20px;
+      .icon {
+        width: 78px;
+        height: 78px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: url("/assets/icons/ico-empty-search.svg");
+        &.customer {
+          background-image: url("/assets/icons/ico-empty-customer.svg");
+        }
+        &.insurance {
+          background-image: url("/assets/icons/ico-empty-insurance.svg");
+        }
+      }
+
+      > .title {
+        margin-top: 16px;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 167%;
+        text-align: center;
+        color: rgba(20, 50, 67, 0.6);
+      }
+
+      > .sub-title {
+        font-size: 14px;
+        line-height: 167%;
+        text-align: center;
+        color: rgba(20, 50, 67, 0.4);
+      }
+  }
+}
+.center-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tooltip-wrap {
+  &.absolute {
+    position: absolute;
+    right: 16px;
+  }
+  display: flex;
+  .ico-tooltip {
+    cursor: pointer;
+    margin-left: 8px;
+    margin-bottom: 2px;
+
+    &:hover {
+      + .tooltip-box {
+        display: block;
+      }
+    }
+  }
+  .tooltip-box {
+    display: none;
+    position: relative;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 167%;
+
+    .tooltip {
+      position: absolute;
+      background: $white;
+      border-radius: 10px;
+      padding: 10px 20px;
+      top: -8px;
+      width: 378px;
+      display: inline-block;
+      left: 12px;
+      box-shadow: 0px 4px 15px rgba(147, 182, 193, 0.31), 0px 4px 31px rgba(147, 182, 193, 0.17);
+      z-index: 100;
+
+      &.top {
+        top: -50px;
+        left: -28px;
+      }
+
+      &.chart {
+        width: 200px;
+      }
+    }
+  }
+}

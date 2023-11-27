@@ -1,0 +1,49 @@
+<!-- .is-open 붙으면 보임 -->
+<div class="modal-wrap is-open" (click)="onClose()">
+  <div class="modal-content center" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <p class="modal-txt">개인 정보 수정</p>
+    </div>
+    <div class="btn-close" (click)="onClose()"></div>
+
+    <div class="modal-body">
+        <form [formGroup]="editForm" class="form-group">
+            <div class="form-input-wrap"
+                 [class.error]="isShowValidLine && !editForm?.get('phone_number')?.valid">
+                <div class="form-label">전화번호</div>
+                <input type="text" placeholder="전화번호" class="form-input"
+                       [class.error]="isShowValidLine && !editForm?.get('phone_number')?.valid"
+                       (blur)="onBlur($event, editForm?.get('phone_number'))"
+                       [tabIndex]="0" [formControlName]="'phone_number'">
+                <button class="btn-icon btn-delete" (click)="editForm?.get('phone_number')?.setValue('')">삭제</button>
+            </div>
+            <div class="form-input-wrap"
+                 [class.error]="isShowValidLine && !editForm?.get('email')?.valid">
+              <div class="form-label">이메일</div>
+                <input type="text" placeholder="이메일" class="form-input"
+                       [class.error]="isShowValidLine && !editForm?.get('email')?.valid"
+                       (blur)="onBlur($event, editForm?.get('email'))"
+                       [tabIndex]="0" [formControlName]="'email'">
+                <button class="btn-icon btn-delete" (click)="editForm?.get('email')?.setValue('')">삭제</button>
+            </div>
+            <div class="form-input-wrap"
+                 [class.error]="isShowValidLine && !editForm?.get('company')?.valid">
+                <div class="form-label">소속</div>
+                <input type="text" placeholder="소속" class="form-input"
+                       [class.error]="isShowValidLine && !editForm?.get('company')?.valid"
+                       (blur)="onBlur($event, editForm?.get('company'))"
+                       [tabIndex]="0" [formControlName]="'company'">
+                <button class="btn-icon btn-delete" (click)="editForm?.get('company')?.setValue('')">삭제</button>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn" (click)="onSave()">완료</button>
+    </div>
+  </div>
+</div>
+
+
+

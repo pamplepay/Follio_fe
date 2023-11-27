@@ -1,0 +1,54 @@
+$font-set: 'Spoqa Han Sans Neo', sans-serif;
+
+$black: #143243;
+$black-90: rgba($black, 0.90);
+$black-85: rgba($black, 0.85);
+$black-80: rgba($black, 0.80);
+$black-70: rgba($black, 0.70);
+$black-60: rgba($black, 0.6);
+$black-50: rgba($black, 0.5);
+$black-40: rgba($black, 0.4);
+$black-35: rgba($black, 0.35);
+$black-30: rgba($black, 0.3);
+$black-20: rgba($black, 0.2);
+$black-15: rgba($black, 0.15);
+$black-10: rgba($black, 0.1);
+$black-8: rgba($black, 0.08);
+$black-5: rgba($black, 0.05);
+$black-3: rgba($black, 0.03);
+$light-gray: #E5E1DE;
+
+$white: #ffffff;
+$white-gray: rgba(245,245,245, 1);
+$white-80: rgba($white, 0.8);
+$white-70: rgba($white, 0.7);
+$white-60: rgba($white, 0.6);
+$logo: #23D9E4;
+$secondary: #008DA4;
+$primary: #00C5D1;
+$hover: #20D9E5;
+$active: #06AFC6;
+$error: #FF60B6;
+$gray: #CCCCCC;
+$yellow: #F6E62E;
+
+
+$background-color: #F4F6F8;
+$nav-mobile-height: 56px;
+$nav-height: 64px;
+$input-height: 48px;
+
+$pc-width: 1000px;
+$box-width: 632px;
+
+@mixin pc-style {
+  @media (min-width: 700px) {
+    @content
+  }
+}
+
+@mixin mobile-style {
+  @media (max-width: 699px) {
+    @content
+  }
+}

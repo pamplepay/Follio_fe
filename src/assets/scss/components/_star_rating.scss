@@ -1,0 +1,40 @@
+.star-rating-wrap{
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.star-rating > input:not(:checked):not(:disabled):hover ~ label {
+  background-image: url('/assets/images/ico-star-primary.svg');
+  opacity: 0.5;
+}
+
+.star-rating > input:checked ~ label {
+  background-image: url('/assets/images/ico-star-primary.svg');
+  background-size: 24px;
+}
+
+.star {
+  display: inline-flex;
+  margin-right: 12px;
+  width: 32px;
+  height: 32px;
+  background-image: url('/assets/images/ico-star-gray.svg');
+  background-repeat: no-repeat;
+  background-size: 28px;
+  background-position: center;
+  cursor: pointer;
+  user-select: none;
+  &.full {
+    background-image: url('/assets/images/ico-star-primary.svg');
+  }
+  &.half {
+    background-image: url('/assets/images/ico-star-primary-half.svg');
+  }
+}

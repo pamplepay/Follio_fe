@@ -1,0 +1,59 @@
+<div class="page-container">
+  <section class="customer-container">
+    <div class="header">
+      <div class="title">최근 본 고객</div>
+      <div class="more" routerLink="/customer">모두 보기</div>
+    </div>
+
+    <div class="list">
+      <div class="add-button" (click)="onAddCustomer()">
+        <div class="icon"></div>
+        고객 추가
+      </div>
+      <ng-template ngFor="" [ngForOf]="customerList" let-customerItem let-customerIndex="index">
+        <div class="customer-wrap" routerLink="/customer/{{customerItem.id}}">
+          <div class="customer">
+            <span class="name">{{customerItem?.name}}</span>님
+          </div>
+          <div class="contract">총 {{customerItem?.insurance_count}}건의 계약</div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+
+  <section class="insurance-container">
+    <div class="header">
+      <div class="title">최근 본 증권</div>
+      <div class="more" routerLink="/customer">모두 보기</div>
+    </div>
+    <div class="list">
+      <ng-template ngFor="" [ngForOf]="customerInsuranceList" let-customerInsuranceItem let-customerInsuranceIndex="index">
+        <app-insurance-item [insuranceItem]="customerInsuranceItem" (click)="onGotoCustomerInsurance(customerInsuranceItem)"></app-insurance-item>
+      </ng-template>
+    </div>
+    <div class="nothing" *ngIf="customerInsuranceList?.length === 0">
+      <div class="icon insurance"></div>
+      <div class="title">최근 본 증권이 없어요.</div>
+      <div class="sub-title">증권을 추가해 주세요.</div>
+    </div>
+  </section>
+
+  <section class="insurance-template-container">
+    <div class="header">
+      <div class="title">최근 본 설계</div>
+      <div class="more" routerLink="/template">모두 보기</div>
+    </div>
+
+    <div class="list">
+      <ng-template ngFor="" [ngForOf]="insuranceTemplateList" let-insuranceTemplateItem let-insuranceTemplateIndex="index">
+        <app-insurance-template-item [insuranceTemplateItem]="insuranceTemplateItem"></app-insurance-template-item>
+      </ng-template>
+    </div>
+
+    <div class="nothing" *ngIf="insuranceTemplateList?.length === 0">
+      <div class="icon insurance"></div>
+      <div class="title">최근 본 설계가 없어요.</div>
+      <div class="sub-title">설계를 추가해 주세요.</div>
+    </div>
+  </section>
+</div>

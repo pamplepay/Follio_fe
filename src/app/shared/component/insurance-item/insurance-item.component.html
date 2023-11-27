@@ -1,0 +1,53 @@
+<div class="insurance-container" [class.is-tag]="isTag">
+  <div class="insurance-wrap">
+    <div class="image-wrap">
+      <div class="image" [style.background-image]="'url('+ insuranceItem?.image + ')'"></div>
+    </div>
+    <div class="info-wrap">
+      <div class="title">
+        <span class="company">[{{commonInsurance?.insuranceListObj[insuranceItem.insurance]}}]</span>
+        {{insuranceItem.name}}
+      </div>
+      <div class="customer">
+        <div class="left">
+          <span class="label">계약자</span>
+          <span>{{insuranceItem.contractor_name}}</span>
+        </div>
+        <div class="div"></div>
+        <div class="right">
+          <span class="label">피보험자</span>
+          <span>{{insuranceItem.insured_name}}</span>
+        </div>
+      </div>
+      <div class="price">
+        <span>{{insuranceItem?.monthly_premiums | number}}</span> 원
+      </div>
+    </div>
+  </div>
+  <div class="comment-wrap" *ngIf="isShowComment && insuranceItem?.comment">
+    <div class="title">{{insuranceItem?.comment_title}}</div>
+    <textarea class="content" autosize readonly [value]="insuranceItem?.comment">
+    </textarea>
+  </div>
+
+  <div class="tag-container">
+    <div class="title">
+      설계 관련 태그
+    </div>
+    <div class="tag-list">
+      <ng-template ngFor="" [ngForOf]="insuranceItem?.tags" let-tagItem let-tagIndex="index">
+<!--        <ng-template [ngIf]="tagIndex < 2">-->
+          <div class="tag">
+            {{tagItem}}
+          </div>
+<!--        </ng-template>-->
+<!--        <div class="tag" *ngIf="tagIndex === 2">-->
+<!--          <div class="dot"></div>-->
+<!--          <div class="dot"></div>-->
+<!--          <div class="dot"></div>-->
+<!--        </div>-->
+      </ng-template>
+    </div>
+  </div>
+
+</div>
