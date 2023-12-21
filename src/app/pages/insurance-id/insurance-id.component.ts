@@ -27,6 +27,7 @@ import { CustomerService } from '../../core/service/customer/customer.service';
   styleUrls:   [ './insurance-id.component.scss' ]
 })
 export class InsuranceIdComponent implements OnInit, OnDestroy {
+  private DetectRequest: Subscription | undefined;
   loginUser: IUser | undefined;
   form: FormGroup;
   commonInsurance: ICommonInsurance | undefined;
@@ -38,6 +39,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
   isShowValidLine: boolean       = false;
   customer: any;
   portfolioType: number;
+  info: any
   percentList: number[]          = [
     120,
     110,
@@ -91,6 +93,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
 
     this.loginUser     = this._authService.getLoginUser();
     this.portfolioType = this._route.snapshot.queryParams['portfolioType'];
+    this.info = this._route.snapshot.queryParams['info'];
 
     this.customerInsurance = this._route.snapshot.data?.customerInsurance;
     if (this.customerInsurance) {
@@ -119,6 +122,22 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
         this.subscribeFormChanges();
         this._initRequired(this.customerInsurance?.insurance_type);
       }
+    });
+
+    const url                              = ApiUrl.detect;
+
+    const body = {
+      info: this.info,
+    };
+
+    this.DetectRequest = this._apiService.post({
+      url,
+      body,
+    }).subscribe(res => {
+      console.log('DetectRequest res => ', res);
+    }, error => {
+      console.log('DetectRequest error =>', error);
+      this.DetectRequest = null;
     });
   }
 
@@ -338,6 +357,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
       ],
       is_same_insured:      customerInsurance?.is_same_insured || true,
       portfolio_type:       customerInsurance?.portfolio_type || this.portfolioType || 1,
+      info:                 this.info,
       payment_period_type:  customerInsurance?.payment_period_type || 1,
       payment_period:       [
         customerInsurance?.payment_period || '',

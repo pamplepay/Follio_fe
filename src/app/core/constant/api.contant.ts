@@ -28,6 +28,7 @@ export const ApiUrl = {
   updateGroupCustomer:               'customer/:id/update_group_customer/',
   analysis:                          'customer/:id/analysis/',
   compare:                           'customer/:id/compare/',
+  uploadImageFile:                    'customer/:id/uploadimage/',
 
   createCustomerMedicalHistory:  'customer_medical_history/',
   getCustomerMedicalHistoryList: 'customer_medical_history/',

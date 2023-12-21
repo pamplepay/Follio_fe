@@ -18,6 +18,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { GlobalBlurHandler } from '../../core/handler/globar-blur-handler/globar-blur-handler';
 import { CustomerService } from '../../core/service/customer/customer.service';
 import { debounceTime, takeWhile } from 'rxjs/operators';
+import { UploadImageModalComponent } from '../../shared/modals/upload-image/upload-image-modal.component';
 
 @Component({
   selector:    'app-customer-id',
@@ -90,6 +91,19 @@ export class CustomerIdComponent implements OnInit, OnDestroy {
 
   onGotoCustomer(groupCustomerItem) {
     this._router.navigateByUrl('customer/' + groupCustomerItem.customer);
+  }
+
+  onShowUploadImageModal() {
+    const modalRef = this._modalService.create(UploadImageModalComponent, {
+      customer: this.customer,
+      dismiss:  () => this._modalService.dismiss(),
+      confirm: (info) => {
+        this._toastService.alert('업로드 되었습니다.');
+        this._modalService.dismiss();
+        this.onAddInsurance(1, info)
+      }
+    });
+
   }
 
   onShowCustomerInfoModal() {
@@ -165,8 +179,8 @@ export class CustomerIdComponent implements OnInit, OnDestroy {
   }
 
 
-  onAddInsurance(portfolioType: number) {
-    this._confirmInsurance(portfolioType);
+  onAddInsurance(portfolioType: number, info: any) {
+    this._confirmInsurance(portfolioType, info);
   }
 
   onDeleteCustomer() {
@@ -232,9 +246,10 @@ export class CustomerIdComponent implements OnInit, OnDestroy {
     });
   }
 
-  private _confirmInsurance(portfolioType: number): void {
+  private _confirmInsurance(portfolioType: number, info:any): void {
     if (portfolioType === 1) {
-      this._router.navigateByUrl(`insurance/create?portfolioType=${portfolioType}`);
+      
+      this._router.navigateByUrl(`insurance/create?portfolioType=${portfolioType}&info=${info}`);
       return;
     }
 
