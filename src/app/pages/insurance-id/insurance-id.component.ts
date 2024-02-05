@@ -168,6 +168,22 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
         this._initRequired(this.customerInsurance?.insurance_type);
       }
     });
+
+    const url                              = ApiUrl.detect;
+
+    const body = {
+      info: this.info,
+    };
+
+    this.DetectRequest = this._apiService.post({
+      url,
+      body,
+    }).subscribe(res => {
+      console.log('DetectRequest res => ', res);
+    }, error => {
+      console.log('DetectRequest error =>', error);
+      this.DetectRequest = null;
+    });
   }
 
   // jhpark_20240129_S
