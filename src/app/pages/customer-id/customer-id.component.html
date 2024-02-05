@@ -19,6 +19,7 @@
         </div>
       </div>
       <div class="btn-wrap">
+        <button class="btn primary-line" (click)="onShowUploadImageModal()">증권 업로드</button>
         <button class="btn primary-line" (click)="onShowCustomerInfoModal()">고객 정보</button>
         <button class="btn primary-line" (click)="onShowCaseHistoryModal()">고객 병력</button>
         <button class="btn-menu">
@@ -42,7 +43,7 @@
       </div>
 
       <div class="btn-wrap">
-        <button class="btn add-insurance" (click)="onAddInsurance(1)">
+        <button class="btn add-insurance" (click)="onAddInsurance(1, '')">
           <img src="/assets/images/ico-add.svg" alt="">
           증권 추가
         </button>
@@ -86,7 +87,7 @@
         <div class="more" (click)="onGotoCompare()">비교 리포트 페이지로 이동</div>
       </div>
       <div class="btn-wrap">
-        <button class="btn add-insurance" (click)="onAddInsurance(2)">
+        <button class="btn add-insurance" (click)="onAddInsurance(2, '')">
           <img src="/assets/images/ico-add.svg" alt="">
           증권 추가
         </button>

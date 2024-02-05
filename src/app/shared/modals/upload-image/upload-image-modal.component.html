@@ -1,0 +1,26 @@
+<div class="modal-wrap is-open" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [formGroup]="form">
+      <section class="form-container">
+        <div class="header">
+          <div class="title">증권 이미지 업로드</div>
+        </div>
+  
+        <div class="list">
+            <div class="form-input-wrap" [class.error]="form.get('image_file').invalid">
+              <div class="form-label required">증권파일</div>
+              <div class="input-wrap">
+                <input type="file" class="form-input right" (change)="onFileSelected($event)" [formControlName]="'image_file'">
+                <div class="error-message">{{form.get('image_file').errors?.message || '업로드해 주세요.'}}</div>
+              </div>
+            </div>
+        </div>
+          
+        <div class="btn-wrap">
+          <button class="btn line" (click)="onClose()">닫기</button>
+          <button class="btn" (click)="onSubmit()">업로드하기</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  

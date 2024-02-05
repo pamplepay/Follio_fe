@@ -27,6 +27,7 @@ import { CustomerService } from '../../core/service/customer/customer.service';
   styleUrls:   [ './insurance-id.component.scss' ]
 })
 export class InsuranceIdComponent implements OnInit, OnDestroy {
+  private DetectRequest: Subscription | undefined;
   loginUser: IUser | undefined;
   form: FormGroup;
   commonInsurance: ICommonInsurance | undefined;
@@ -38,6 +39,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
   isShowValidLine: boolean       = false;
   customer: any;
   portfolioType: number;
+  info: any
   percentList: number[]          = [
     120,
     110,
@@ -57,10 +59,21 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
     mask:               Number,
     thousandsSeparator: ','
   };
+
+  new_detail: IDetail = {
+    id: 0,
+    name: '',
+    order: 0,
+    sub_category: 0,
+    // 나머지 필드는 필요에 따라 초기화
+  };
+
   private SCreateCustomerInsuranceRequest: Subscription | undefined;
   private SUpdateCustomerInsuranceRequest: Subscription | undefined;
   private SDeleteCustomerInsuranceRequest: Subscription | undefined;
   private isUnsubscribe: boolean = false;
+  isLoading = false; // 로딩 상태 관리
+  private detail_data;
 
   constructor(
     private _authService: AuthService,
@@ -91,6 +104,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
 
     this.loginUser     = this._authService.getLoginUser();
     this.portfolioType = this._route.snapshot.queryParams['portfolioType'];
+    this.info = this._route.snapshot.queryParams['info'];
 
     this.customerInsurance = this._route.snapshot.data?.customerInsurance;
     if (this.customerInsurance) {
@@ -102,6 +116,40 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
     }
 
     console.log('this.customer', this.customer);
+
+    // jhpark_20231229_S
+    if (this.info.length > 0) {
+      const url                              = ApiUrl.detect;
+
+      const body = {
+        info: this.info,
+      };
+      this.DetectRequest = this._apiService.post({
+        url,
+        body,
+        isLoading:true,
+      }).subscribe(res => {
+        console.log('DetectRequest res => ', res);
+        if (res.loss_head !== undefined) {
+          this.selectLossInsurance(res.loss_head);
+        }
+        if (res.life_head !== undefined) {
+          this.selectLifeInsurance(res.life_head);
+        }
+        if (res.detail_data !== undefined) {
+          //this.changeCommonService(res.detail_data);
+          this.populateDetailData(res.detail_data);
+        }
+        // 200ms 후에 _calculateWound 함수 실행
+        setTimeout(() => {
+          this._calculateWound();
+        }, 200);
+      }, error => {
+        console.log('DetectRequest error =>', error);
+        this.DetectRequest = null;
+      });
+    }
+    // jhpark_20231229_E
 
     this._commonService.rxInsurance().subscribe(insurance => {
       this.commonInsurance = insurance;
@@ -122,10 +170,201 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
     });
   }
 
+  // jhpark_20240129_S
+  private populateDetailData(detailData: any) {
+    Object.keys(detailData).forEach(categoryKey => {
+      const subcategory = detailData[categoryKey];
+  
+      // 카테고리가 객체인지 확인
+      const subcategoryKeys = Object.keys(subcategory);
+      for (const subcategoryKey of subcategoryKeys) {
+          const subsubcategory = subcategory[subcategoryKey];
+  
+          const subsubcategoryKeys = Object.keys(subsubcategory);
+          for (const subsubcategoryKey of subsubcategoryKeys) {
+              const arrdata = subsubcategory[subsubcategoryKey];
+              if (arrdata.length > 0) {
+                  console.log(arrdata);
+                  for (let i = 0; i < arrdata.length; i++) {
+                    if (i > 0) {
+                      // const last_id = Object.keys(this.caseForm).reduce((sum, key) => {
+                      //   return sum + this.caseForm[key].length;
+                      // }, 0);
+                      
+                      // this.new_detail.id = last_id;
+                      const category = this.commonInsurance.categories.find(cat => cat.name === categoryKey);
+                      if (category) {
+                        const subcategory = category.sub_category_list.find(subcat => subcat.name === subcategoryKey);
+                        if (subcategory.detail_list) {
+                          console.log(subcategory.detail_list);
+                          this.new_detail.id = subcategory.detail_list[0].id;
+                          this.onAddCase(this.new_detail);
+                        }
+                      }
+                    }
+                    let detailString = arrdata[i];
+                    const parts = detailString.split(':');
+                    this.findAndProcessDetail(categoryKey, subcategoryKey, subsubcategoryKey, i, parts);
+                  }
+              }
+          }
+      }
+  });
+}
+
+
+  //   Object.keys(detailData).forEach(categoryName => {
+  //     const detailList = detailData[categoryName];
+  //     detailList.forEach(detailString => {
+  //       const parts = detailString.split(':');
+  //       this.findAndProcessDetail(categoryName, parts);
+  //     });
+  //   });
+  // }
+
+  private findAndProcessDetail(categoryKey: string, subcategoryKey: string, subsubcategoryKey: string, index: number, parts: string[]) {
+    const category = this.commonInsurance.categories.find(cat => cat.name === categoryKey);
+    if (category) {
+      const subcategory = category.sub_category_list.find(subcat => subcat.name === subcategoryKey);
+      if (subcategory.detail_list) {
+        const detail = subcategory.detail_list.find(subcat => subcat.name.includes(subsubcategoryKey));
+        if (detail) {
+        //for  (const detail of subcategory.detail_list) {
+          console.log(parts)
+          if (parts.length > 3) {
+            this.caseForm[detail.id][index].get('payment_period').setValue(parseInt(parts[0]));
+            this.caseForm[detail.id][index].get('payment_period_type').setValue(parseInt(parts[1]));
+            this.caseForm[detail.id][index].get('warranty_period').setValue(parseInt(parts[2]));
+            this.caseForm[detail.id][index].get('warranty_period_type').setValue(parseInt(parts[3]));
+            this.caseForm[detail.id][index].get('premium').setValue(parseInt(parts[4]));
+          }
+          else {
+            this.caseForm[detail.id][index].get('premium').setValue(parseInt(parts[1]));
+          }
+        // for (const detail of subsubcategory) {
+        //   // category.sub_category_list.forEach(subCategory => {
+        //   //   subCategory.detail_list.forEach(detail => {
+        //       //if (parts[0].includes(detail.name)) {
+        //       if (parts.length > 4) {
+        //         if (detail.name.includes(parts[0])) {
+        //           this.caseForm[detail.id][0].get('payment_period').setValue(parseInt(parts[1]));
+        //           this.caseForm[detail.id][0].get('warranty_period').setValue(parseInt(parts[3]));
+        //           this.caseForm[detail.id][0].get('premium').setValue(parseInt(parts[5]));
+        //           // Process matched detail. Implement your logic here.
+        //           console.log(`Found match for ${parts[0]} in ${detail.name}`);
+        //           // Example: Use parts array to extract and process relevant data.
+        //         }
+        //       }
+        //       else {
+        //         if (detail.name.includes(parts[0])) {
+        //           this.caseForm[detail.id][0].get('premium').setValue(parseInt(parts[1]));
+        //           // Process matched detail. Implement your logic here.
+        //           console.log(`Found match for ${parts[0]} in ${detail.name}`);
+        //           // Example: Use parts array to extract and process relevant data.
+        //         }
+        //       }
+        }
+      }
+    }
+  }
+      //   if (subCategory.name.includes)
+      //   for (const detail of subCategory.detail_list) {
+      // // category.sub_category_list.forEach(subCategory => {
+      // //   subCategory.detail_list.forEach(detail => {
+      //     //if (parts[0].includes(detail.name)) {
+      //     if (parts.length > 4) {
+      //       if (detail.name.includes(parts[0])) {
+      //         this.caseForm[detail.id][0].get('payment_period').setValue(parseInt(parts[1]));
+      //         this.caseForm[detail.id][0].get('warranty_period').setValue(parseInt(parts[3]));
+      //         this.caseForm[detail.id][0].get('premium').setValue(parseInt(parts[5]));
+      //         // Process matched detail. Implement your logic here.
+      //         console.log(`Found match for ${parts[0]} in ${detail.name}`);
+      //         // Example: Use parts array to extract and process relevant data.
+      //       }
+      //     }
+      //     else {
+      //       if (detail.name.includes(parts[0])) {
+      //         this.caseForm[detail.id][0].get('premium').setValue(parseInt(parts[1]));
+      //         // Process matched detail. Implement your logic here.
+      //         console.log(`Found match for ${parts[0]} in ${detail.name}`);
+      //         // Example: Use parts array to extract and process relevant data.
+      //       }
+      //     }
+      //   }
+      //}
+  //   }
+  // }
+  // jhpark_20240129_E
+
   ngOnDestroy(): void {
     this.isUnsubscribe = true;
   }
 
+  selectLifeInsurance(life_head) {
+    // 'insurance_type'을 상해보험(2)으로 설정
+    this.form.get('insurance_type').setValue(1);
+  
+    // 'commonInsurance?.life_insurance_list'의 두 번째 항목의 id를 찾아서 설정
+    const lifeInsuranceList = this.commonInsurance?.life_insurance_list;
+    if (lifeInsuranceList && life_head.생명보험 < lifeInsuranceList.length) {
+      const selectedItem = lifeInsuranceList[life_head.생명보험];
+      this.form.get('insurance').setValue(selectedItem.id);
+    }
+    this.form.get('name').setValue(life_head.상품명);
+    this.form.get('contractor_name').setValue(life_head.계약자);
+    this.form.get('payment_period').setValue(life_head.납입기간);
+    if (life_head.계약자.includes(life_head.피보험자)) {
+      this.form.get('insured_name').setValue(life_head.계약자);
+      this.form.get('is_same_insured').setValue(true);
+    }
+    else {
+      this.form.get('insured_name').setValue(life_head.피보험자);
+    }
+    this.form.get('warranty_period').setValue(life_head.보장기간);
+    this.form.get('contract_date').setValue(life_head.계약일);
+    this.form.get('expiry_date').setValue(life_head.만기일);
+    this.caseForm = this.lifeCaseForm;
+  }
+
+  selectLossInsurance(loss_head) {
+    // 'insurance_type'을 손해보험(2)으로 설정
+    this.form.get('insurance_type').setValue(2);
+  
+    // 'commonInsurance?.loss_insurance_list'의 두 번째 항목의 id를 찾아서 설정
+    const lossInsuranceList = this.commonInsurance?.loss_insurance_list;
+    if (lossInsuranceList && loss_head.손해보험 < lossInsuranceList.length) {
+      const selectedItem = lossInsuranceList[loss_head.손해보험];
+      this.form.get('insurance').setValue(selectedItem.id);
+    }
+    this.form.get('name').setValue(loss_head.상품명);
+    this.form.get('contractor_name').setValue(loss_head.계약자);
+    this.form.get('payment_period').setValue(loss_head.납입기간);
+    if (loss_head.계약자.includes(loss_head.피보험자)) {
+      this.form.get('insured_name').setValue(loss_head.계약자);
+      this.form.get('is_same_insured').setValue(true);
+    }
+    else {
+      this.form.get('insured_name').setValue(loss_head.피보험자);
+    }
+    this.form.get('warranty_period').setValue(loss_head.보장기간);
+
+    this.form.get('monthly_assurance_premium').setValue(loss_head.월보장보험료);
+    this.form.get('contract_date').setValue(loss_head.계약일);
+    this.form.get('monthly_renewal_premium').setValue(loss_head.월갱신보험료);
+    this.form.get('expiry_date').setValue(loss_head.만기일);
+    this.form.get('monthly_earned_premium').setValue(loss_head.월적립보험료);
+    //this.form.get('cancellation_refund').setValue(loss_head.해약환급금);
+    this.form.get('monthly_premiums').setValue(loss_head.월납입보험료);
+    this.form.get('renewal_growth_rate').setValue(loss_head.갱신증가율);
+    this.caseForm = this.woundCaseForm;
+  }
+
+  changeCommonService(detail_data) {
+    this.detail_data = detail_data;
+    this.caseForm.forEach(caseform => {
+      console.log(caseform)
+    })
+  }
 
   /******************************     event functions     ****************************/
 
@@ -338,6 +577,7 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
       ],
       is_same_insured:      customerInsurance?.is_same_insured || true,
       portfolio_type:       customerInsurance?.portfolio_type || this.portfolioType || 1,
+      info:                 this.info,
       payment_period_type:  customerInsurance?.payment_period_type || 1,
       payment_period:       [
         customerInsurance?.payment_period || '',

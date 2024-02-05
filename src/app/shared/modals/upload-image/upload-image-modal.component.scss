@@ -1,0 +1,62 @@
+@import "../../../../assets/scss/utils/variables";
+
+.modal-content {
+  width: 600px;
+  height: 350px;
+  padding: 0;
+  display: flex;
+  background-color: transparent;
+  section {
+    padding: 20px 60px;
+    border-radius: 10px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+
+    &.form-container {
+      width: 580px;
+      height: 250px;
+    }
+    > .header {
+      margin-left: 130px;
+      margin-bottom: 17px;
+      > .title {
+        font-weight: bold;
+        font-size: 21px;
+        line-height: 167%;
+      }
+    }
+
+    .list {
+      flex: 1;
+      overflow: auto;
+      .form-input-wrap {
+        margin-top: 36px;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+    .form-input-wrap {
+        margin-top: 0;
+
+        .form-label {
+            font-size: 16px;
+        }
+
+        .form-input {
+            font-size: 16px;
+            max-width: 400px;
+        }
+    }
+    }
+
+    .btn-wrap {
+      margin-top: 32px;
+      button {
+        font-weight: normal;
+      }
+    }
+  }
+
+}
