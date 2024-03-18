@@ -118,36 +118,38 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
     console.log('this.customer', this.customer);
 
     // jhpark_20231229_S
-    if (this.info.length > 0) {
-      const url                              = ApiUrl.detect;
+    if (this.info != undefined) {
+      if (this.info.length > 0) {
+        const url                              = ApiUrl.detect;
 
-      const body = {
-        info: this.info,
-      };
-      this.DetectRequest = this._apiService.post({
-        url,
-        body,
-        isLoading:true,
-      }).subscribe(res => {
-        console.log('DetectRequest res => ', res);
-        if (res.loss_head !== undefined) {
-          this.selectLossInsurance(res.loss_head);
-        }
-        if (res.life_head !== undefined) {
-          this.selectLifeInsurance(res.life_head);
-        }
-        if (res.detail_data !== undefined) {
-          //this.changeCommonService(res.detail_data);
-          this.populateDetailData(res.detail_data);
-        }
-        // 200ms 후에 _calculateWound 함수 실행
-        setTimeout(() => {
-          this._calculateWound();
-        }, 200);
-      }, error => {
-        console.log('DetectRequest error =>', error);
-        this.DetectRequest = null;
-      });
+        const body = {
+          info: this.info,
+        };
+        this.DetectRequest = this._apiService.post({
+          url,
+          body,
+          isLoading:true,
+        }).subscribe(res => {
+          console.log('DetectRequest res => ', res);
+          if (res.loss_head !== undefined) {
+            this.selectLossInsurance(res.loss_head);
+          }
+          if (res.life_head !== undefined) {
+            this.selectLifeInsurance(res.life_head);
+          }
+          if (res.detail_data !== undefined) {
+            //this.changeCommonService(res.detail_data);
+            this.populateDetailData(res.detail_data);
+          }
+          // 200ms 후에 _calculateWound 함수 실행
+          setTimeout(() => {
+            this._calculateWound();
+          }, 200);
+        }, error => {
+          console.log('DetectRequest error =>', error);
+          this.DetectRequest = null;
+        });
+      }
     }
     // jhpark_20231229_E
 
@@ -252,10 +254,10 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
             this.caseForm[detail.id][index].get('payment_period_type').setValue(parseInt(parts[1]));
             this.caseForm[detail.id][index].get('warranty_period').setValue(parseInt(parts[2]));
             this.caseForm[detail.id][index].get('warranty_period_type').setValue(parseInt(parts[3]));
-            this.caseForm[detail.id][index].get('premium').setValue(parseInt(parts[4]));
+            this.caseForm[detail.id][index].get('assurance_amount').setValue(parseInt(parts[4]) / 10000);
           }
           else {
-            this.caseForm[detail.id][index].get('premium').setValue(parseInt(parts[1]));
+            this.caseForm[detail.id][index].get('assurance_amount').setValue(parseInt(parts[1]) / 10000);
           }
         // for (const detail of subsubcategory) {
         //   // category.sub_category_list.forEach(subCategory => {
@@ -427,11 +429,13 @@ export class InsuranceIdComponent implements OnInit, OnDestroy {
 
       this._changeDetectRef.detectChanges();
 
-      document.getElementsByClassName('error')[0].scrollIntoView({
-        behavior: 'smooth',
-        block:    'center'
-      });
-      return;
+      if (document.getElementsByClassName('error').length > 0) {
+        document.getElementsByClassName('error')[0].scrollIntoView({
+          behavior: 'smooth',
+          block:    'center'
+        });
+        return;
+      }
     }
 
     const formValue         = this.form.value;

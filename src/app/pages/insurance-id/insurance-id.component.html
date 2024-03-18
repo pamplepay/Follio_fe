@@ -532,7 +532,9 @@
   </section>
 
   <div class="btn-wrap">
-    <button class="btn" (click)="onGotoAnalysis()">분석 결과 보기</button>
+    <button class="btn primary-line" (click)="onSubmit()">저장하기</button>
+    <button class="btn" (click)="onGotoAnalysis()" *ngIf="customerInsurance">분석 결과 보기</button>
+
   </div>
 
   <app-btn-top></app-btn-top>

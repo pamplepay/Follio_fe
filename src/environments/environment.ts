@@ -5,9 +5,8 @@
 export const environment = {
   name: 'dev',
   projectName: 'weapon',
-  apiUrl:      'http://localhost:8000/api/v1',
-  mid:         'nicepay00m',  // 나이스페이 결제 테스트 아이디
-  production: false,
+  apiUrl:      'https://foliio.co.kr/api/v1',
+  production: true,
   isTesting: false,
 };
 
