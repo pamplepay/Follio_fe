@@ -31,28 +31,29 @@
   <section class="insurance-info-container" [formGroup]="form">
     <div class="header">
       <div class="title">상품 정보</div>
-      <div class="form-radio-group-wrap">
-        <label class="form-radio-wrap" (click)="onClickInsuranceType(1)">
-          <input type="radio"
-                 name="pin"
-                 value="not-pin"
-                 class="form-radio" [checked]="form?.get('insurance_type').value === 1">
-          <span class="custom-radio"></span>
-          <span class="custom-label-txt">생명보험</span>
-        </label>
-        <label class="form-radio-wrap" (click)="onClickInsuranceType(2)">
-          <input type="radio"
-                 name="pin"
-                 value="pin"
-                 class="form-radio" [checked]="form?.get('insurance_type').value === 2">
-          <span class="custom-radio"></span>
-          <span class="custom-label-txt">손해보험</span>
-        </label>
-      </div>
     </div>
 
     <div class="content">
-      <div class="sub-title">상품명</div>
+      <div class="sub-title">상품명
+        <div class="form-radio-group-wrap">
+          <label class="form-radio-wrap" (click)="onClickInsuranceType(1)">
+            <input type="radio"
+                   name="pin"
+                   value="not-pin"
+                   class="form-radio" [checked]="form?.get('insurance_type').value === 1">
+            <span class="custom-radio"></span>
+            <span class="custom-label-txt">생명보험</span>
+          </label>
+          <label class="form-radio-wrap" (click)="onClickInsuranceType(2)">
+            <input type="radio"
+                   name="pin"
+                   value="pin"
+                   class="form-radio" [checked]="form?.get('insurance_type').value === 2">
+            <span class="custom-radio"></span>
+            <span class="custom-label-txt">손해보험</span>
+          </label>
+        </div>
+      </div>
       <div class="product-name-wrap">
         <div class="form-dropdown-wrap" tabindex="0" [class.error]="form?.get('insurance').invalid && isShowValidLine">
           <span class="custom-select" *ngIf="form?.get('insurance').value">{{commonInsurance?.insuranceListObj[form?.get('insurance').value]}}</span>

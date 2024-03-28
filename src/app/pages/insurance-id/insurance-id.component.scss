@@ -31,12 +31,24 @@ section {
 }
 
 .sub-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
   font-weight: bold;
   font-size: 18px;
   line-height: 167%;
   &.detail {
     margin-top: 40px;
   }
+}
+
+.sub-title .form-radio-group-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  margin-left: 60px;
 }
 
 .product-detail-wrap {
